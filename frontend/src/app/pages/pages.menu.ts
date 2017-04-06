@@ -18,7 +18,7 @@ export const PAGES_MENU = [
         path: 'editors',
         data: {
           menu: {
-            title: 'Editors',
+            title: 'Projects',
             icon: 'ion-edit',
             selected: false,
             expanded: false,
@@ -30,7 +30,7 @@ export const PAGES_MENU = [
             path: 'ckeditor',
             data: {
               menu: {
-                title: 'CKEditor',
+                title: 'Specific Project',
               }
             }
           }

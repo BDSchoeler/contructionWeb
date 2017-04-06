@@ -1,7 +1,39 @@
+<div class="widgets">
+
+
 <div class="row">
-  <div class="col-md-12">
-    <ba-card title="ckeditor" baCardClass="with-scroll">
-      <ckeditor [(ngModel)]="ckeditorContent" [config]="config"></ckeditor>
-    </ba-card>
-  </div>
+	<div class="col-xlg-6 col-lg-12  col-md-12 col-sm-12 col-xs-12 typography-widget">
+  		<ba-card title="General Project Information" baCardClass="with-scroll heading-widget">
+       		<div class="section-block">
+	        	<p>STATUS - </p>
+		        <br />
+		        <p>Title - project.title</p>
+		        <p>Project ID - project.ID </p>
+		        <p>Current Phase - project.phaseTitle - project.phaseNumber/project.totalPhases</p>
+		        <p>Locaton - project.location</p>
+		        <p>Type - project.type</p>
+		        <p>Size - project.size</p>
+        	</div>
+     	</ba-card>
+  	</div>
+</div>
+
+<div class="row">
+	<div class="col-xlg-6 col-lg-6  col-md-6 col-sm-6">
+		<ba-card title="Project Editor" baCardClass="with-scroll">
+			<form>
+  				<div class="form-group">
+  					<label for="exampleSelect1">Select Action</label>
+  					<select class="form-control" id="exampleSelect1">
+				   	 	<option>Add</option>
+				    	<option>Update</option>
+				    	<option>View</option>
+  					</select>
+				</div>
+  				<button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+</div>
+
 </div>

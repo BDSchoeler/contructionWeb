@@ -47,7 +47,7 @@ export class Ckeditor {
 
   	if(this.chosenForm == 'Orders')
   	{
-  		this.ordersService.getOrderByProjectID().then(data => {
+  		this.ordersService.getOrdersByProjectID(this.id).then(data => {
   		this.orders=data;
   	});
   	}

@@ -6,6 +6,9 @@ import { NgaModule } from '../../theme/nga.module';
 import { Dashboard } from './dashboard.component';
 import { routing }       from './dashboard.routing';
 
+
+import {ProjectsService} from '../projects/projects.service';
+
 import { PopularApp } from './popularApp';
 import { PieChart } from './pieChart';
 import { TrafficChart } from './trafficChart';
@@ -41,6 +44,7 @@ import { UsersMapService } from './usersMap/usersMap.service';
     Dashboard
   ],
   providers: [
+  ProjectsService,
     CalendarService,
     FeedService,
     LineChartService,

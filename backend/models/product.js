@@ -9,6 +9,10 @@ return db.query("select * from Product",callback);
  
 return db.query("select * from Product where Id=?",[id],callback);
  },
+  getProductByOrderId:function(id,callback){
+ 
+return db.query("select * from Product p, OrderedProducts op where op.orderID = ? and op.productID=p.productID ",[id],callback);
+ },
  addProduct:function(Product,callback){
  return db.query("Insert into Product values(?,?,?)",[Product.Id,Product.Title,Product.Status],callback);
  },

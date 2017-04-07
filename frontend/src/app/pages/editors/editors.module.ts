@@ -9,7 +9,7 @@ import { Editors } from './editors.component';
 import { Ckeditor } from './components/ckeditor/ckeditor.component';
 
 import {ProjectsService} from '../projects/projects.service';
-
+import {OrdersService} from '../services/orders.service';
 
 @NgModule({
   imports: [
@@ -24,7 +24,8 @@ import {ProjectsService} from '../projects/projects.service';
     Ckeditor
   ],
   providers: [
-  ProjectsService
+  ProjectsService,
+  OrdersService
   ]
 })
 export class EditorsModule {

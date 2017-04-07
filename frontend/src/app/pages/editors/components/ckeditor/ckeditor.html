@@ -229,7 +229,7 @@
 <!-- Orders-->
 <div *ngIf="chosenForm == 'Orders'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
-		<ba-card title="Form" baCardClass="with-scroll">
+		<ba-card title="Report" baCardClass="with-scroll">
 			<h5>Orders</h5>
 			<p>Click on an ID to view purchased Products.</p>
 			<div class="horizontal-scroll">
@@ -239,16 +239,15 @@
 					      <th>Order ID</th>
 					      <th>Delivery Date</th>
 					      <th>Total Cost</th>
-					      <th>Payment Status</th>
+					      <th>Order Status</th>
 					    </tr>
 					    </thead>
 					    <tbody>
-					    <tr *ngFor="let item of metricsTableData">
-					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
-					      <td ngClass="nowrap">{{ item.browser }}</td>
-					      <td class="align-right">{{ item.visits }}</td>
-					      <td class="align-right">{{ item.purchases }}</td>
-					      <td class="align-right">{{ item.percent }}</td>
+					    <tr *ngFor="let item of orders">
+					      <td ngClass="nowrap">{{ item.orderID }}</td>
+					      <td class="align-right">{{ item.deliveryDate }}</td>
+					      <td class="align-right">{{ item.totalCost }}</td>
+					      <td class="align-right">{{ item.orderStatus }}</td>
 					    </tr>
 				    </tbody>
 				</table>
@@ -259,7 +258,7 @@
 <!-- Phases -->
 <div *ngIf="chosenForm == 'Phases'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
-		<ba-card title="Form" baCardClass="with-scroll">
+		<ba-card title="Report" baCardClass="with-scroll">
 			<h5>Phases</h5>
 			<p>Click on an phase number to view related Tasks.</p>
 			<div class="horizontal-scroll">
@@ -290,7 +289,7 @@
 <!-- Financial Report -->
 <div *ngIf="chosenForm == 'Finances'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
-		<ba-card title="Form" baCardClass="with-scroll">
+		<ba-card title="Report" baCardClass="with-scroll">
 			<h5>Financial Report</h5>
 			<p>Put financeRecordID here</p>
 			<div class="horizontal-scroll">

@@ -40,13 +40,13 @@
 			<form>
   				<div class="form-group">
   					<label for="exampleSelect1">Add a...</label>
-  					<select class="form-control" id="exampleSelect1">
-				   	 	<option>Phase</option>
-				    	<option>Task</option>
-				    	<option>Order</option>
+  					<select class="form-control" id="exampleSelect1" #formSelect1>
+				   	 	<option value='Phase'>Phase</option>
+				    	<option value='Task'>Task</option>
+				    	<option value='Order'>Order</option>
   					</select>
 				</div>
-  				<button type="submit" class="btn btn-danger">Submit</button>
+  				<button type="submit" (click)="selectForm(formSelect1.value)" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>
@@ -56,12 +56,12 @@
 			<form>
   				<div class="form-group">
   					<label for="exampleSelect1">Update...</label>
-  					<select class="form-control" id="exampleSelect1">
-				   	 	<option>Project Status</option>
-				    	<option>Order Payment Status</option>
+  					<select class="form-control" id="exampleSelect1" #formSelect2>
+				   	 	<option value='Status'>Project Status</option>
+				    	<option value='Payment'>Order Payment Status</option>
   					</select>
 				</div>
-  				<button type="submit" class="btn btn-danger">Submit</button>
+  				<button type="submit" (click)="selectForm(formSelect2.value)" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>
@@ -71,20 +71,20 @@
 			<form>
   				<div class="form-group">
   					<label for="exampleSelect1">View...</label>
-  					<select class="form-control" id="exampleSelect1">
-				   	 	<option>Phases</option>
-				    	<option>Orders</option>
-				    	<option>Financial Report</option>
+  					<select class="form-control" id="exampleSelect1" #formSelect3>
+				   	 	<option value='Phases'>Phases</option>
+				    	<option value='Orders'>Orders</option>
+				    	<option value='Finances'>Financial Report</option>
   					</select>
 				</div>
-  				<button type="submit" class="btn btn-danger">Submit</button>
+  				<button type="submit" (click)="selectForm(formSelect3.value)" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>
 
 </div>
 <!--Form for adding a phase-->
-<div class="row">
+<div *ngIf="chosenForm == 'Phase'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Add A Phase</h5>
@@ -107,7 +107,7 @@
 	</div>
 </div>
 <!--Form for adding a task-->
-<div class="row">
+<div *ngIf="chosenForm == 'Task'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Add A Task</h5>
@@ -123,8 +123,9 @@
 		</ba-card>
 	</div>
 </div>
+
 <!--Form for adding an order-->
-<div class="row">
+<div *ngIf="chosenForm == 'Order'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Add An Order</h5>
@@ -174,7 +175,7 @@
 
 <!-- Stuff for UPDATE -->
 <!-- Update status -->
-<div class="row">
+<div *ngIf="chosenForm == 'Status'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Update Project Status</h5>
@@ -194,7 +195,7 @@
 </div>
 
 <!-- Update payment status -->
-<div class="row">
+<div *ngIf="chosenForm == 'Payment'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Update Order Payment Status</h5>
@@ -226,7 +227,7 @@
 
 <!-- Stuff for View-->
 <!-- Orders-->
-<div class="row">
+<div *ngIf="chosenForm == 'Orders'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Orders</h5>
@@ -256,7 +257,7 @@
 	</div>
 </div>
 <!-- Phases -->
-<div class="row">
+<div *ngIf="chosenForm == 'Phases'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Phases</h5>
@@ -287,7 +288,7 @@
 </div>
 
 <!-- Financial Report -->
-<div class="row">
+<div *ngIf="chosenForm == 'Finances'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Financial Report</h5>

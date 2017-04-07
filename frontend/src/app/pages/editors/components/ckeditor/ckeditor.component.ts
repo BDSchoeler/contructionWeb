@@ -17,17 +17,31 @@ export class Ckeditor {
   };
 
   chosenAction = 'Add';
+
   id;
   constructor(private route:ActivatedRoute) {
   }
   ngOnInit(){
     this.id = this.route.snapshot.params['id'];
     console.log(this.id);
-  }
+}
+  chosenForm = '';
+
+
+
+
   selectAction(choice) {
-  		console.log(choice);
-  		this.chosenAction = choice;
-  		console.log(this.chosenAction);
+	if (this.chosenAction != choice)
+	{
+		this.chosenForm = '';
+	}	
+
+  	this.chosenAction = choice;
+  }
+
+  selectForm(choice)
+  {
+  	this.chosenForm = choice;
   }
 }
 

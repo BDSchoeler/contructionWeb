@@ -16,26 +16,8 @@ if(req.params.id){
         }
     });
 }
-}
+});
 
-
-
-
-router.get('/project/:id',function(req,res,next){
-if(req.params.id){
-
-    Order.getOrderByProjectId(req.params.id,function(err,rows){
-
-        if(err)
-        {
-            res.json(err);
-        }
-        else{
-            res.json(rows);
-        }
-    });
-}
-}
 
 router.get('/:id?',function(req,res,next){
 

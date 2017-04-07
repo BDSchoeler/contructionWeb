@@ -1,22 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Product=require('../models/product');
-router.get('/order/:id',function(req,res,next){
 
-if(req.params.id){
-
-    Product.getProductByOrderId(req.params.id,function(err,rows){
-
-        if(err)
-        {
-            res.json(err);
-        }
-        else{
-            res.json(rows);
-        }
-    });
-}
-}
 router.get('/:id?',function(req,res,next){
 
 if(req.params.id){
@@ -102,5 +87,21 @@ router.put('/:id',function(req,res,next){
             res.json(rows);
         }
     });
+});
+
+
+router.get('/order/:id',function(req,res,next){
+if(req.params.id){
+    Product.getProductByOrderId(req.params.id,function(err,rows){
+
+        if(err)
+        {
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+  }
 });
 module.exports=router;

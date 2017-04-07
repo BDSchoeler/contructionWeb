@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {ActivatedRoute} from '@angular/router';
 import './ckeditor.loader';
 import 'ckeditor';
 import 'style-loader!./ckeditor.scss';
@@ -17,10 +17,18 @@ export class Ckeditor {
   };
 
   chosenAction = 'Add';
+
+  id;
+  constructor(private route:ActivatedRoute) {
+  }
+  ngOnInit(){
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
+}
   chosenForm = '';
 
-  constructor() {
-  }
+
+
 
   selectAction(choice) {
 	if (this.chosenAction != choice)

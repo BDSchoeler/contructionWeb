@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-
+import { RouterModule, Router } from '@angular/router';
 import 'style-loader!./login.scss';
 
 @Component({
@@ -14,7 +14,7 @@ export class Login {
   public password:AbstractControl;
   public submitted:boolean = false;
 
-  constructor(fb:FormBuilder) {
+  constructor(fb:FormBuilder,   private router: Router,) {
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
@@ -28,7 +28,8 @@ export class Login {
     this.submitted = true;
     if (this.form.valid) {
       // your code goes here
-      // console.log(values);
+       this.router.navigate(['/pages/dashboard']);
+       console.log(values);
     }
   }
 }

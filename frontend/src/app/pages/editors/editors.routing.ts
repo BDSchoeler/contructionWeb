@@ -6,10 +6,10 @@ import { Ckeditor } from './components/ckeditor/ckeditor.component';
 // noinspection TypeScriptValidateTypes
 const routes: Routes = [
   {
-    path: '',
+    path: 'ckeditor',
     component: Editors,
     children: [
-      { path: 'ckeditor', component: Ckeditor }
+      { path: ':id', component: Ckeditor }
     ]
   }
 ];

@@ -27,7 +27,7 @@ export const PAGES_MENU = [
         },
         children: [
           {
-            path: 'ckeditor',
+            path: 'ckeditor/200000',
             data: {
               menu: {
                 title: 'Specific Project',

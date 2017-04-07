@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProjectsService} from '../../../projects/projects.service';
+import {OrdersService} from '../../../services/orders.service';
 import './ckeditor.loader';
 import 'ckeditor';
 import 'style-loader!./ckeditor.scss';
@@ -18,9 +19,9 @@ export class Ckeditor {
   };
 
   chosenAction = 'Add';
-
+  orders;
   id;
-  constructor(private route:ActivatedRoute) {
+  constructor(private route:ActivatedRoute, private ordersService:OrdersService) {
   }
   ngOnInit(){
     this.id = this.route.snapshot.params['id'];
@@ -43,6 +44,13 @@ export class Ckeditor {
   selectForm(choice)
   {
   	this.chosenForm = choice;
+
+  	if(this.chosenForm == 'Orders')
+  	{
+  		ordersService.getOrderByProjectID().then(data => {
+  		this.orders=data;
+  	});
+  	}
   }
 }
 

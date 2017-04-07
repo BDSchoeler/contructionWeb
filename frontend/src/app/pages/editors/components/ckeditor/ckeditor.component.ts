@@ -16,6 +16,15 @@ export class Ckeditor {
     height: '600',
   };
 
+  chosenAction = 'Add';
+
   constructor() {
   }
+
+  selectAction(choice) {
+  		console.log(choice);
+  		this.chosenAction = choice;
+  		console.log(this.chosenAction);
+  }
 }
+

@@ -20,18 +20,298 @@
 
 <div class="row">
 	<div class="col-xlg-6 col-lg-6  col-md-6 col-sm-6">
-		<ba-card title="Project Editor" baCardClass="with-scroll">
+		<ba-card title="Project Editor Action" baCardClass="with-scroll">
 			<form>
   				<div class="form-group">
   					<label for="exampleSelect1">Select Action</label>
+  					<select class="form-control" id="exampleSelect1" #actionSelect>
+				   	 	<option value='Add'>Add</option>
+				    	<option value='Update'>Update</option>
+				    	<option value='View'>View</option>
+  					</select>
+				</div>
+  				<button type="submit" (click)="selectAction(actionSelect.value)" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+	<!-- ADD -->
+	<div *ngIf="chosenAction == 'Add'" class="col-xlg-6 col-lg-6  col-md-6 col-sm-6">
+		<ba-card title="Add" baCardClass="with-scroll">
+			<form>
+  				<div class="form-group">
+  					<label for="exampleSelect1">Add a...</label>
   					<select class="form-control" id="exampleSelect1">
-				   	 	<option>Add</option>
-				    	<option>Update</option>
-				    	<option>View</option>
+				   	 	<option>Phase</option>
+				    	<option>Task</option>
+				    	<option>Order</option>
   					</select>
 				</div>
   				<button type="submit" class="btn btn-danger">Submit</button>
 			</form>
+		</ba-card>
+	</div>
+	<!-- UPDATE-->
+	<div *ngIf="chosenAction == 'Update'" class="col-xlg-6 col-lg-6  col-md-6 col-sm-6">
+		<ba-card title="Update" baCardClass="with-scroll">
+			<form>
+  				<div class="form-group">
+  					<label for="exampleSelect1">Update...</label>
+  					<select class="form-control" id="exampleSelect1">
+				   	 	<option>Project Status</option>
+				    	<option>Order Payment Status</option>
+  					</select>
+				</div>
+  				<button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+	<!-- VIEW -->
+	<div *ngIf="chosenAction == 'View'" class="col-xlg-6 col-lg-6  col-md-6 col-sm-6">
+		<ba-card title="View" baCardClass="with-scroll">
+			<form>
+  				<div class="form-group">
+  					<label for="exampleSelect1">View...</label>
+  					<select class="form-control" id="exampleSelect1">
+				   	 	<option>Phases</option>
+				    	<option>Orders</option>
+				    	<option>Financial Report</option>
+  					</select>
+				</div>
+  				<button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+
+</div>
+<!--Form for adding a phase-->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Add A Phase</h5>
+			<form>
+		 		<div class="form-group">
+				    <input type="text" class="form-control" id="phaseTitle" placeholder="Phase Title">
+		  		</div>
+			  	<div class="form-group">
+			    	<textarea class="form-control" placeholder="Description"></textarea>
+			  	</div>
+			  	<div class="form-group">
+				    <input type="text" class="form-control" id="estimatedCost" placeholder="Estimated Cost">
+		  		</div>
+		  		<div class="checkbox">
+		    		<ba-checkbox [(ngModel)]="isChecked" [label]="'Check me out'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+		  		</div>
+		 		 <button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+</div>
+<!--Form for adding a task-->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Add A Task</h5>
+			<form>
+		 		<div class="form-group">
+				    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title">
+		  		</div>
+			  	<div class="form-group">
+			    	<textarea class="form-control" placeholder="Description"></textarea>
+			  	</div>
+		 		<button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+</div>
+<!--Form for adding an order-->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Add An Order</h5>
+			<div class="form-group">
+  				<label for="exampleSelect1">Choose a supplier</label>
+  				<select class="form-control" id="suppliers">
+					<option>List of suppliers here</option>
+  				</select>
+			</div>
+
+			<!--Will only appear after supplier is selected -->
+			<div class="horizontal-scroll">
+				<table class="table table-bordered">
+				    <thead>
+					    <tr>
+					      <th>Select</th>
+					      <th>Product ID</th>
+					      <th>Name</th>
+					      <th>Supplier</th>
+					      <th>Cost</th>
+					    </tr>
+					    </thead>
+					    <tbody>
+					    <tr *ngFor="let item of metricsTableData">
+					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
+					      <td ngClass="nowrap">{{ item.browser }}</td>
+					      <td class="align-right">{{ item.visits }}</td>
+					      <td class="align-right">{{ item.purchases }}</td>
+					      <td class="align-right">{{ item.percent }}</td>
+					    </tr>
+				    </tbody>
+				</table>
+			</div>
+			<div class="align-right">
+
+			</div>
+			<div class="align-right">
+				<p>Total Cost: </p>
+				<form>
+					<button type="submit" class="btn btn-danger">Calculate Cost</button>
+		 			<button type="submit" class="btn btn-danger">Place Order</button>
+				</form>
+			</div>
+		</ba-card>
+	</div>
+</div>
+
+<!-- Stuff for UPDATE -->
+<!-- Update status -->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Update Project Status</h5>
+			<form>
+		 		<div class="form-group">
+  					<label for="projectStatuses">Select Status</label>
+  					<select class="form-control" id="projectStatuses">
+				   	 	<option>Planning</option>
+				    	<option>In Progress</option>
+				    	<option>Completed</option>
+  					</select>
+				</div>
+		 		<button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+</div>
+
+<!-- Update payment status -->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Update Order Payment Status</h5>
+			<div class="horizontal-scroll">
+				<table class="table table-bordered">
+				    <thead>
+					    <tr>
+					      <th>Order ID</th>
+					      <th>Payment Status</th>
+					    </tr>
+					    </thead>
+					    <tbody>
+					    <tr *ngFor="let item of metricsTableData">
+					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
+					      <td ngClass="nowrap">{{ item.browser }}</td>
+					      <td class="align-right">{{ item.visits }}</td>
+					      <td class="align-right">{{ item.purchases }}</td>
+					      <td class="align-right">{{ item.percent }}</td>
+					    </tr>
+				    </tbody>
+				</table>
+			</div>
+			<form>
+		 		<button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		</ba-card>
+	</div>
+</div>
+
+<!-- Stuff for View-->
+<!-- Orders-->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Orders</h5>
+			<p>Click on an ID to view purchased Products.</p>
+			<div class="horizontal-scroll">
+				<table class="table table-bordered">
+				    <thead>
+					    <tr>
+					      <th>Order ID</th>
+					      <th>Delivery Date</th>
+					      <th>Total Cost</th>
+					      <th>Payment Status</th>
+					    </tr>
+					    </thead>
+					    <tbody>
+					    <tr *ngFor="let item of metricsTableData">
+					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
+					      <td ngClass="nowrap">{{ item.browser }}</td>
+					      <td class="align-right">{{ item.visits }}</td>
+					      <td class="align-right">{{ item.purchases }}</td>
+					      <td class="align-right">{{ item.percent }}</td>
+					    </tr>
+				    </tbody>
+				</table>
+			</div>
+		</ba-card>
+	</div>
+</div>
+<!-- Phases -->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Phases</h5>
+			<p>Click on an phase number to view related Tasks.</p>
+			<div class="horizontal-scroll">
+				<table class="table table-bordered">
+				    <thead>
+					    <tr>
+					      <th>Phase Number</th>
+					      <th>Title</th>
+					      <th>Estimated Duration</th>
+					      <th>Estimated Cost</th>
+					    </tr>
+					    </thead>
+					    <tbody>
+					    <tr *ngFor="let item of metricsTableData">
+					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
+					      <td ngClass="nowrap">{{ item.browser }}</td>
+					      <td class="align-right">{{ item.visits }}</td>
+					      <td class="align-right">{{ item.purchases }}</td>
+					      <td class="align-right">{{ item.percent }}</td>
+					    </tr>
+				    </tbody>
+				</table>
+			</div>
+		</ba-card>
+	</div>
+</div>
+
+<!-- Financial Report -->
+<div class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Financial Report</h5>
+			<p>Put financeRecordID here</p>
+			<div class="horizontal-scroll">
+				<table class="table table-bordered">
+				    <thead>
+					    <tr>
+					      <th>Estimated Total Cost</th>
+					      <th>Total Cost To Date</th>
+					      <th>Remaining Funds</th>
+					    </tr>
+					    </thead>
+					    <tbody>
+					    <tr *ngFor="let item of metricsTableData">
+					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
+					      <td ngClass="nowrap">{{ item.browser }}</td>
+					      <td class="align-right">{{ item.visits }}</td>
+					      <td class="align-right">{{ item.purchases }}</td>
+					      <td class="align-right">{{ item.percent }}</td>
+					    </tr>
+				    </tbody>
+				</table>
+			</div>
 		</ba-card>
 	</div>
 </div>

@@ -8,6 +8,8 @@ import { routing }       from './editors.routing';
 import { Editors } from './editors.component';
 import { Ckeditor } from './components/ckeditor/ckeditor.component';
 
+import {ProjectsService} from '../projects/projects.service';
+
 
 @NgModule({
   imports: [
@@ -20,6 +22,9 @@ import { Ckeditor } from './components/ckeditor/ckeditor.component';
   declarations: [
     Editors,
     Ckeditor
+  ],
+  providers: [
+  ProjectsService
   ]
 })
 export class EditorsModule {

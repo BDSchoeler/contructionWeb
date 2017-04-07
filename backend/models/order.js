@@ -8,7 +8,11 @@ return db.query("Select * from Orders",callback);
 },
  getOrderById:function(id,callback){
  
-return db.query("select * from Orders where Id=?",[id],callback);
+return db.query("select * from Orders where ID=?",[id],callback);
+ },
+  getOrderByProjectId:function(id,callback){
+ 
+    return db.query("select * from Orders where projectID=?",[id],callback);
  },
  addOrder:function(Order,callback){
  return db.query("Insert into Orders values(?,?,?)",[Order.Id,Order.Title,Order.Status],callback);

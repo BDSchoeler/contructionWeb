@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {ProjectsService} from '../../../projects/projects.service';
 import './ckeditor.loader';
 import 'ckeditor';
 import 'style-loader!./ckeditor.scss';

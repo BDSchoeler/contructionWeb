@@ -17,6 +17,8 @@ var orders = require('./routes/orders');
 var projects = require('./routes/projects');
 var suppliers = require('./routes/suppliers');
 var tasks = require('./routes/tasks');
+var phases = require('./routes/phases');
+var finances = require('./routes/finances');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(cors());
@@ -40,6 +42,8 @@ app.use('/orders', orders);
 app.use('/projects', projects);
 app.use('/suppliers', suppliers);
 app.use('/tasks', tasks);
+app.use('/phases', phases);
+app.use('/finances', finances);
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------

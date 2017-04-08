@@ -7,9 +7,8 @@
        		<div class="section-block">
 	        	<p>STATUS - </p>
 		        <br />
-		        <p>Title - project.title</p>
-		        <p>Project ID - project.ID </p>
-		        <p>Current Phase - project.phaseTitle - project.phaseNumber/project.totalPhases</p>
+		        <p>Project ID - projects.ID </p>
+		        <p>Current Phase - project.phaseTitle</p>
 		        <p>Locaton - project.location</p>
 		        <p>Type - project.type</p>
 		        <p>Size - project.size</p>
@@ -112,12 +111,16 @@
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Add A Task</h5>
 			<form>
+			<div class="form-group">
+  					<label for="projectStatuses">Select associated Phase</label>
+  					<select class="form-control" id="projectStatuses">
+				   	 	<option>1</option>
+				    	<option>2</option>
+  					</select>
+				</div>
 		 		<div class="form-group">
 				    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title">
 		  		</div>
-			  	<div class="form-group">
-			    	<textarea class="form-control" placeholder="Description"></textarea>
-			  	</div>
 		 		<button type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>

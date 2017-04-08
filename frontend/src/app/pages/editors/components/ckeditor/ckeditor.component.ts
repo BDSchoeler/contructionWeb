@@ -20,7 +20,10 @@ export class Ckeditor {
 
   chosenAction = 'Add';
   orders;
+  project;
+
   id;
+
   constructor(private route:ActivatedRoute, private ordersService:OrdersService) {
   }
   ngOnInit(){

@@ -14,7 +14,7 @@ return db.query("select * from Phases where Id=?",[id],callback);
 return db.query("Select * from Phases where projectID=?",[projectID],callback);
  },
  addPhase:function(Phase,callback){
- return db.query("Insert into Phases values(?,?,?)",[Phase.Id,Phase.Title,Phase.Status],callback);
+ return db.query("Insert into Phases (phaseId, name, description, projectID) values(?,?,?,?)",[Phase.phaseID, Phase.name,Phase.description, Phase.projectID],callback);
  },
  deletePhase:function(id,callback){
   return db.query("delete from Phases where Id=?",[id],callback);

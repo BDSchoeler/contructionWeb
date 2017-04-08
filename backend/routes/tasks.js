@@ -2,6 +2,37 @@ var express = require('express');
 var router = express.Router();
 var Task=require('../models/task');
 
+
+
+
+router.get('/project/:projectId/phase/:phaseId',function(req,res,next){
+
+    Task.getTaskByPhase(req.params.projectId,req.params.phaseId,function(err,rows){
+
+        if(err)
+        {
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/project/:projectId',function(req,res,next){
+
+    Task.getTaskByProject(req.params.projectId,function(err,rows){
+
+        if(err)
+        {
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
 router.get('/:id?',function(req,res,next){
 
 if(req.params.id){

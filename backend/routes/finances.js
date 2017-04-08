@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var Product=require('../models/product');
-router.get('order/:orderId',function(req,res,next){
+var Finance=require('../models/finance');
 
-    Product.getProductByOrderId(req.params.orderId,function(err,rows){
+router.get('/project/:id',function(req,res,next){
+if(req.params.id){
+
+    Finance.getFinanceByProjectId(req.params.id,function(err,rows){
 
         if(err)
         {
@@ -13,13 +15,15 @@ router.get('order/:orderId',function(req,res,next){
             res.json(rows);
         }
     });
-
+}
 });
+
+
 router.get('/:id?',function(req,res,next){
 
 if(req.params.id){
 
-    Product.getProductById(req.params.id,function(err,rows){
+    Finance.getFinanceById(req.params.id,function(err,rows){
 
         if(err)
         {
@@ -32,7 +36,7 @@ if(req.params.id){
 }
 else{
 
- Product.getAllProducts(function(err,rows){
+ Finance.getAllFinances(function(err,rows){
 
         if(err)
         {
@@ -48,7 +52,7 @@ else{
 });
 router.post('/',function(req,res,next){
 
-        Product.addProduct(req.body,function(err,count){
+        Finance.addFinance(req.body,function(err,count){
 
             //console.log(req.body);
             if(err)
@@ -61,7 +65,7 @@ router.post('/',function(req,res,next){
         });
 });
 router.post('/:id',function(req,res,next){
-  Product.deleteAll(req.body,function(err,count){
+  Finance.deleteAll(req.body,function(err,count){
     if(err)
     {
       res.json(err);
@@ -74,7 +78,7 @@ router.post('/:id',function(req,res,next){
 });
 router.delete('/:id',function(req,res,next){
 
-        Product.deleteProduct(req.params.id,function(err,count){
+        Finance.deleteFinance(req.params.id,function(err,count){
 
             if(err)
             {
@@ -89,7 +93,7 @@ router.delete('/:id',function(req,res,next){
 });
 router.put('/:id',function(req,res,next){
 
-    Product.updateProduct(req.params.id,req.body,function(err,rows){
+    Finance.updateFinance(req.params.id,req.body,function(err,rows){
 
         if(err)
         {
@@ -100,21 +104,5 @@ router.put('/:id',function(req,res,next){
             res.json(rows);
         }
     });
-});
-
-
-router.get('/order/:id',function(req,res,next){
-if(req.params.id){
-    Product.getProductByOrderId(req.params.id,function(err,rows){
-
-        if(err)
-        {
-            res.json(err);
-        }
-        else{
-            res.json(rows);
-        }
-    });
-  }
 });
 module.exports=router;

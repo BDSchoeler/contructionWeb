@@ -8,7 +8,7 @@ return db.query("Select * from Projects",callback);
 },
  getProjectById:function(id,callback){
  
-return db.query("select * from Projects where Id=?",[id],callback);
+return db.query("select * from Projects where projectID=?",[id],callback);
  },
  getProjectCostById:function(projectID,callback){
 return db.query("SELECT SUM(totalCost) AS Total Cost FROM orders WHERE orders.projectID = ?",[projectID],callback);

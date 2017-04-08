@@ -17,7 +17,7 @@ return db.query("select * from Tasks where Id=?",[id],callback);
  return db.query("SELECT phasetasks.taskID, tasks.description FROM phasetasks INNER JOIN tasks ON phasetasks.taskID = tasks.taskID WHERE projectID = ? AND phaseID = ?",[projectID,phaseID],callback);
  },
  addTask:function(Task,callback){
- return db.query("Insert into Tasks values(?,?,?)",[Task.Id,Task.Title,Task.Status],callback);
+ return db.query("Insert into Tasks values(?,?)",[Task.taskID,Task.description],callback);
  },
  deleteTask:function(id,callback){
   return db.query("delete from Tasks where Id=?",[id],callback);

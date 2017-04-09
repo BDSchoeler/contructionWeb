@@ -7,11 +7,11 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 @Injectable()
 
-export class TasksService {
+export class FinancesService {
     constructor(private http: Http) { }
  
-    getTasksByPhaseIDAndProjectID(projectID, phaseID){
-        return this.http.get('http://localhost:8080/tasks/project/'+ projectID +'/phase/' + phaseID ).toPromise()
+    getFinancesByProjectID(id){
+        return this.http.get('http://localhost:8080/finances/project/' + id).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
 }

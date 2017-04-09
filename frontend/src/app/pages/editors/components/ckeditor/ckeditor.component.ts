@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProjectsService} from '../../../projects/projects.service';
 import {OrdersService} from '../../../services/orders.service';
+import {PhasesService} from '../../../services/phases.service';
+import {FinancesService} from '../../../services/finances.service';
 import './ckeditor.loader';
 import 'ckeditor';
 import 'style-loader!./ckeditor.scss';
@@ -20,11 +22,14 @@ export class Ckeditor {
 
   chosenAction = 'Add';
   orders;
+  phases;
   project;
+  tasks;
+  finances;
 
   id;
 
-  constructor(private route:ActivatedRoute, private ordersService:OrdersService) {
+  constructor(private route:ActivatedRoute, private ordersService:OrdersService, private phasesService:PhasesService, private financesService:FinancesService) {
   }
   ngOnInit(){
     this.id = this.route.snapshot.params['id'];
@@ -52,8 +57,20 @@ export class Ckeditor {
   	{
   		this.ordersService.getOrdersByProjectID(this.id).then(data => {
   		this.orders=data;
-  	});
+  	   });
   	}
+    else if(this.chosenForm == 'Phases')
+    {
+      this.phasesService.getPhasesByProjectID(this.id).then(data => {
+      this.phases=data;
+       });
+    }
+    else if(this.chosenForm == 'Finances')
+    {
+      this.financesService.getFinancesByProjectID(this.id).then(data => {
+      this.finances=data;
+       });
+    }
   }
 }
 

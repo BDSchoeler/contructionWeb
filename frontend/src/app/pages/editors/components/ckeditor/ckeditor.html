@@ -97,8 +97,8 @@
 			  	<div class="form-group">
 				    <input type="text" class="form-control" id="estimatedCost" placeholder="Estimated Cost">
 		  		</div>
-		  		<div class="checkbox">
-		    		<ba-checkbox [(ngModel)]="isChecked" [label]="'Check me out'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+		  		<div class="form-group">
+				    <input type="text" class="form-control" id="estimatedCost" placeholder="Estimated Time To Completed (hours)">
 		  		</div>
 		 		 <button type="submit" class="btn btn-danger">Submit</button>
 			</form>
@@ -247,7 +247,7 @@
 					    </thead>
 					    <tbody>
 					    <tr *ngFor="let item of orders">
-					      <td ngClass="nowrap">{{ item.orderID }}</td>
+					      <td ngClass="nowrap"><a [routerLink]="'/pages/products/'+id+'/'+item.orderID" routerLinkActive="active">{{ item.orderID }}</a></td>
 					      <td class="align-right">{{ item.deliveryDate }}</td>
 					      <td class="align-right">{{ item.totalCost }}</td>
 					      <td class="align-right">{{ item.orderStatus }}</td>
@@ -275,13 +275,13 @@
 					    </tr>
 					    </thead>
 					    <tbody>
-					    <tr *ngFor="let item of metricsTableData">
-					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
-					      <td ngClass="nowrap">{{ item.browser }}</td>
-					      <td class="align-right">{{ item.visits }}</td>
-					      <td class="align-right">{{ item.purchases }}</td>
-					      <td class="align-right">{{ item.percent }}</td>
+					    <tr *ngFor="let item of phases">
+					      <td ngClass="nowrap"><a [routerLink]="'/pages/tasks/'+id+'/'+item.phaseNumber" routerLinkActive="active">{{ item.phaseNumber }}</a></td>
+					      <td class="align-right">{{ item.title }}</td>
+					      <td>not added yet</td>
+					      <td class="align-right">{{ item.estimatedCost }}</td>
 					    </tr>
+
 				    </tbody>
 				</table>
 			</div>
@@ -299,18 +299,18 @@
 				<table class="table table-bordered">
 				    <thead>
 					    <tr>
+					      <th>Finance Record ID</th>
 					      <th>Estimated Total Cost</th>
 					      <th>Total Cost To Date</th>
 					      <th>Remaining Funds</th>
 					    </tr>
 					    </thead>
 					    <tbody>
-					    <tr *ngFor="let item of metricsTableData">
-					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
-					      <td ngClass="nowrap">{{ item.browser }}</td>
-					      <td class="align-right">{{ item.visits }}</td>
-					      <td class="align-right">{{ item.purchases }}</td>
-					      <td class="align-right">{{ item.percent }}</td>
+					    <tr *ngFor="let item of finances">
+					      <td ngClass="nowrap">{{ item.financeRecordID }}</td>
+					      <td class="align-right">{{ item.estimatedTotalCost }}</td>
+					      <td class="align-right">{{ item.totalCostToDate }}</td>
+					      <td class="align-right">Calculate remaining cost</td>
 					    </tr>
 				    </tbody>
 				</table>

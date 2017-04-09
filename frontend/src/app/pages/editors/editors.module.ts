@@ -12,6 +12,8 @@ import {ProjectsService} from '../projects/projects.service';
 import {OrdersService} from '../services/orders.service';
 import {PhasesService} from '../services/phases.service';
 import {TasksService} from '../services/tasks.service';
+import {FinancesService} from '../services/finances.service';
+
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import {TasksService} from '../services/tasks.service';
   ProjectsService,
   OrdersService,
   PhasesService,
-  TasksService
+  TasksService,
+  FinancesService
   ]
 })
 export class EditorsModule {

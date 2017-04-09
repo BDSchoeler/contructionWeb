@@ -4,14 +4,14 @@
 <div class="row">
 	<div class="col-xlg-12 col-lg-12  col-md-12 col-sm-12 col-xs-12 typography-widget">
   		<ba-card title="General Project Information" baCardClass="with-scroll heading-widget">
-       		<div class="section-block">
-	        	<p>STATUS - </p>
+       		<div *ngIf = "project" class="section-block">
+	        	<p>STATUS - {{project[0].status}}</p>
 		        <br />
-		        <p>Project ID - projects.ID </p>
-		        <p>Current Phase - project.phaseTitle</p>
-		        <p>Locaton - project.location</p>
-		        <p>Type - project.type</p>
-		        <p>Size - project.size</p>
+		        <p>Project ID - {{project[0].projectID}}</p>
+		        <p>Current Phase - {{project[0].currentPhase}}</p>
+		        <p>Locaton - {{project[0].location}}</p>
+		        <p>Type - {{project[0].projectType}}</p>
+		        <p>Size - {{project[0].size}}</p>
         	</div>
      	</ba-card>
   	</div>
@@ -182,6 +182,7 @@
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Update Project Status</h5>
+			<p>Current Status = {{project[0].status}}</p>
 			<form>
 		 		<div class="form-group">
   					<label for="projectStatuses">Select Status</label>
@@ -234,11 +235,14 @@
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Report" baCardClass="with-scroll">
 			<h5>Orders</h5>
-			<p>Click on an ID to view purchased Products.</p>
+			<p>To view products:</p>
+			<p>New Tab -> Click phase ID</p>
+			<p>Same window -> Click icon</p>
 			<div class="horizontal-scroll">
 				<table class="table table-bordered">
 				    <thead>
 					    <tr>
+					      <th></th>
 					      <th>Order ID</th>
 					      <th>Delivery Date</th>
 					      <th>Total Cost</th>
@@ -247,7 +251,8 @@
 					    </thead>
 					    <tbody>
 					    <tr *ngFor="let item of orders">
-					      <td ngClass="nowrap"><a [routerLink]="'/pages/products/'+id+'/'+item.orderID" routerLinkActive="active">{{ item.orderID }}</a></td>
+					      <td><button (click)="goToProducts(item.orderID,id)" type="button" class="btn btn-info btn-icon"><i class="ion-information"></i></button>
+					      <td ngClass="nowrap"><a [routerLink]="'/pages/products/'+id+'/'+item.orderID" routerLinkActive="active" target="_blank">{{ item.orderID }}</a></td>
 					      <td class="align-right">{{ item.deliveryDate }}</td>
 					      <td class="align-right">{{ item.totalCost }}</td>
 					      <td class="align-right">{{ item.orderStatus }}</td>
@@ -263,11 +268,14 @@
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Report" baCardClass="with-scroll">
 			<h5>Phases</h5>
-			<p>Click on an phase number to view related Tasks.</p>
+			<p>To view tasks:</p>
+			<p>New Tab -> Click phase number</p>
+			<p>Same window -> Click icon</p>
 			<div class="horizontal-scroll">
 				<table class="table table-bordered">
 				    <thead>
 					    <tr>
+					      <th></th>
 					      <th>Phase Number</th>
 					      <th>Title</th>
 					      <th>Estimated Duration</th>
@@ -276,7 +284,8 @@
 					    </thead>
 					    <tbody>
 					    <tr *ngFor="let item of phases">
-					      <td ngClass="nowrap"><a [routerLink]="'/pages/tasks/'+id+'/'+item.phaseNumber" routerLinkActive="active">{{ item.phaseNumber }}</a></td>
+					      <td><button (click)="goToTasks(item.phaseNumber,id)" type="button" class="btn btn-info btn-icon"><i class="ion-information"></i></button></td>
+					      <td ngClass="nowrap"><a [routerLink]="'/pages/tasks/'+id+'/'+item.phaseNumber" routerLinkActive="active" target="_blank">{{ item.phaseNumber }}</a></td>
 					      <td class="align-right">{{ item.title }}</td>
 					      <td>not added yet</td>
 					      <td class="align-right">{{ item.estimatedCost }}</td>

@@ -8,9 +8,16 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ProjectsService {
 
- constructor (private http: Http) {}
+constructor (private http: Http) {}
+
 getProjects(){
     return this.http.get('http://localhost:8080/projects').toPromise()
+                  .then(this.extractData)
+                  .catch(this.handleError);
+}
+
+getProject(id){
+  return this.http.get('http://localhost:8080/projects/' +id).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
 }

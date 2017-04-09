@@ -3,9 +3,9 @@ var router = express.Router();
 var Project=require('../models/project');
 
 router.get('/:id?',function(req,res,next){
-
+console.log('in projects');
 if(req.params.id){
-
+console.log('in projects with params');
     Project.getProjectById(req.params.id,function(err,rows){
 
         if(err)

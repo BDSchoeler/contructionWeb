@@ -5,6 +5,7 @@ import {OrdersService} from '../../../services/orders.service';
 import {PhasesService} from '../../../services/phases.service';
 import {FinancesService} from '../../../services/finances.service';
 import {ProductsService} from '../../../services/products.service';
+import {TasksService} from '../../../services/tasks.service';
 import './ckeditor.loader';
 import 'ckeditor';
 import 'style-loader!./ckeditor.scss';
@@ -37,7 +38,7 @@ export class Ckeditor {
   supplierID;
 
   constructor(private route:ActivatedRoute, private router:Router, private ordersService:OrdersService, private phasesService:PhasesService, private financesService:FinancesService,
-              private projectsService:ProjectsService, private productsService:ProductsService) 
+              private projectsService:ProjectsService, private productsService:ProductsService, private tasksService:TasksService) 
   {
   }
 
@@ -72,6 +73,14 @@ updateOrderPaymentStatus(paymentOption, orderID)
 updateStatus(statusOption, projectID)
 {
     this.projectsService.updateStatus(statusOption, projectID).then(data=>{
+      this.ngOnInit();
+    });
+}
+
+
+updatePhase(phaseOption, projectID)
+{
+    this.projectsService.updatePhase(phaseOption, projectID).then(data=>{
       this.ngOnInit();
     });
 }

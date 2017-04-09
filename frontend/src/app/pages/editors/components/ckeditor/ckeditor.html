@@ -282,6 +282,7 @@
 <div *ngIf="chosenForm == 'Next Phase'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
+			<h1>THIS STILL ISNT LINKED TO THE BACKEND</h1>
 			<h5>Update Project Phase</h5>
 			<p>Current Phase = {{project[0].currentPhase}}</p>
 			<form>
@@ -291,7 +292,7 @@
 						<option *ngFor="let item of phases" #selectedPhase>{{item.phaseNumber}}</option>
 	  				</select>
 				</div>
-		 		<button type="submit" class="btn btn-danger">Update</button>
+		 		<button  (click)="updatePhase(selectedPhase.value, project[0].projectID)" type="submit" class="btn btn-danger">Update</button>
 			</form>
 		</ba-card>
 	</div>

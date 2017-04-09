@@ -29,6 +29,38 @@
       </div>
     </ba-card>
   </div>
+ <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <ba-card title="Add A Project" baCardClass="with-scroll heading-widget">
+      <div class="horizontal-scroll">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Location">
+          </div>
+          <div class="form-group">
+            <label>Select Type</label>
+            <select class="form-control">
+              <option value='House'>House</option>
+              <option value='Condo'>Condo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Size (ft^2)">
+          </div>
+          <div class="form-group">
+            <input #estimatedTime type="text" class="form-control" id="estimatedTimeToComplete" placeholder="Estimated Time To Completed (hours)">
+          </div>
+            <!-- Button here incomplete!!!!-->
+           <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+      </div>
+      <p>Note to bryce: this requires the projectID to be generated, currentPhase to be set to null if possible? and status to be set to Planning.</p>
+      <p>Maybe by creating a project, it immediately creates a phase 1 with constant info</p>
+      <p>Phase Title: Initial Setup</p>
+      <p>Description: Start of project</p>
+      <p>Estimated Cost: 0</p>
+      <p>Estimated Time: 0 </p>
+    </ba-card>
+  </div>
 </div>
 <!--
 <div class="row">

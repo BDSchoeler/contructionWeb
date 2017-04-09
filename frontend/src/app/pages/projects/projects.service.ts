@@ -32,6 +32,11 @@ getProjectByEmail(email){
         return this.http.put('http://localhost:8080/projects/'+id, {'status':status}).toPromise();
     }
 
+    updatePhase(phase, id)
+    {
+       //something to update the currentPhase of an object
+    }
+
 
 
   private extractData(res: Response) {

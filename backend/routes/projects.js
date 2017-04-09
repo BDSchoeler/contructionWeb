@@ -2,6 +2,23 @@ var express = require('express');
 var router = express.Router();
 var Project=require('../models/project');
 
+router.get('/email/:email',function(req,res,next){
+
+    Project.getProjectByEmail(req.params.email,function(err,rows){
+
+        if(err)
+        {
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+
+
+});
+
+
 router.get('/:id?',function(req,res,next){
 console.log('in projects');
 if(req.params.id){

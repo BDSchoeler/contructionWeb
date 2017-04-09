@@ -17,7 +17,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of projects" class="no-top-border">
-              <td ngClass="nowrap">{{item.projectID}}</td>
+              <td ngClass="nowrap"><a [routerLink]="'/pages/editors/ckeditor/'+item.projectID" routerLinkActive="active"> {{item.projectID}}</a></td>
               <td class="align-right">{{item.currentPhase}}</td>
               <td class="align-right">Get amount allocated from finances $</td>
               <td class="align-right">Calculate the amount left to spend $</td>
@@ -30,7 +30,7 @@
     </ba-card>
   </div>
 </div>
-
+<!--
 <div class="row">
   <ba-card class="col-xlg-6 col-lg-6 col-md-6 col-sm-12 col-xs-12" title="To Do List"
            baCardClass="xmedium-card feed-comply-panel with-scroll todo-panel">
@@ -40,5 +40,5 @@
            baCardClass="xmedium-card feed-comply-panel with-scroll calendar-panel">
     <calendar></calendar>
   </ba-card>
-</div>
+</div>-->
 

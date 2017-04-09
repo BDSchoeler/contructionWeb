@@ -20,7 +20,7 @@ return db.query("select * from Users where Id=?",[id],callback);
   return db.query("update Users set Title=?,Status=? where Id=?",[User.Title,User.Status,id],callback);
  },
  login:function(loginInfo,callback){
-   db.query("select * from Users where email=? and password =?",[loginInfo.email, loginInfo.password],callback)
+   return db.query("select * from Users where email=? and password =?",[loginInfo.email, loginInfo.password],callback)
  }
  
 };

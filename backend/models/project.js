@@ -20,7 +20,7 @@ return db.query("SELECT SUM(totalCost) AS Total Cost FROM orders WHERE orders.pr
   return db.query("delete from Projects where Id=?",[id],callback);
  },
  updateProject:function(id,Project,callback){
-  return db.query("update Projects set Title=?,Status=? where Id=?",[Project.Title,Project.Status,id],callback);
+  return db.query("update Projects set status=? where projectID=?",[Project.status,id],callback);
  }
  
 };

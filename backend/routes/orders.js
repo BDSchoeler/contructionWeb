@@ -92,7 +92,7 @@ router.delete('/:id',function(req,res,next){
         });
 });
 router.put('/:id',function(req,res,next){
-
+    console.log(req.body);
     Order.updateOrder(req.params.id,req.body,function(err,rows){
 
         if(err)

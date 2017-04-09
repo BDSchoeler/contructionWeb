@@ -14,7 +14,7 @@ return db.query("select * from Product where Id=?",[id],callback);
 return db.query("select * from Product p, OrderedProducts op where op.orderID = ? and op.productID=p.productID ",[id],callback);
  },
  getProductBySupplierId:function(id,callback){
-	return db.query("select * from supplierproducts sp, product p where sp.supplierID = 400 (variable) AND p.productID = sp.productID",[id],callback);
+	return db.query("select * from supplierproducts sp, product p where sp.supplierID = ? AND p.productID = sp.productID",[id],callback);
  },
  addProduct:function(Product,callback){
  return db.query("Insert into Product values(?,?,?)",[Product.Id,Product.Title,Product.Status],callback);

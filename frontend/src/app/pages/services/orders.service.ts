@@ -14,9 +14,12 @@ export class OrdersService {
         return this.http.get('http://localhost:8080/orders/project/' + id).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
-}
+    }
 
-
+    updateOrderPaymentStatus(orderStatus, orderID)
+    {
+        return this.http.put('http://localhost:8080/orders/'+orderID, {'orderStatus':orderStatus}).toPromise();
+    }
 
   private extractData(res: Response) {
     let body = res.json();

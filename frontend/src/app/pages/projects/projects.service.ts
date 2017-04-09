@@ -22,6 +22,11 @@ getProject(id){
                   .catch(this.handleError);
 }
 
+ updateStatus(status, id)
+    {
+        return this.http.put('http://localhost:8080/projects/'+id, {'status':status}).toPromise();
+    }
+
 
 
   private extractData(res: Response) {

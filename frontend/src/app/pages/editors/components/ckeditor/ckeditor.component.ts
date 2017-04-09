@@ -56,6 +56,20 @@ goToProducts(orderID, id)
   this.router.navigate(['/pages/products/'+id+'/'+orderID]);
 }
 
+updateOrderPaymentStatus(paymentOption, orderID)
+{
+    this.ordersService.updateOrderPaymentStatus(paymentOption, orderID).then(data=>{
+      this.refreshForm();
+    });
+}
+
+updateStatus(statusOption, projectID)
+{
+    this.projectsService.updateStatus(statusOption, projectID).then(data=>{
+      this.refreshForm();
+    });
+}
+
 
 
   selectAction(choice) {
@@ -71,12 +85,33 @@ goToProducts(orderID, id)
   {
   	this.chosenForm = choice;
 
-  	if(this.chosenForm == 'Orders')
+  	if(this.chosenForm == 'Orders' || this.chosenForm == 'Payment')
   	{
   		this.ordersService.getOrdersByProjectID(this.id).then(data => {
   		this.orders=data;
   	   });
   	}
+    else if(this.chosenForm == 'Phases')
+    {
+      this.phasesService.getPhasesByProjectID(this.id).then(data => {
+      this.phases=data;
+       });
+    }
+    else if(this.chosenForm == 'Finances')
+    {
+      this.financesService.getFinancesByProjectID(this.id).then(data => {
+      this.finances=data;
+       });
+    }
+  }
+  refreshForm()
+  {
+    if(this.chosenForm == 'Orders' || this.chosenForm == 'Payment')
+    {
+      this.ordersService.getOrdersByProjectID(this.id).then(data => {
+      this.orders=data;
+       });
+    }
     else if(this.chosenForm == 'Phases')
     {
       this.phasesService.getPhasesByProjectID(this.id).then(data => {

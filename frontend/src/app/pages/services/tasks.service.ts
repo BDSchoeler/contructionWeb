@@ -6,18 +6,12 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 @Injectable()
-export class ProjectsService {
 
-constructor (private http: Http) {}
-
-getProjects(){
-    return this.http.get('http://localhost:8080/projects').toPromise()
-                  .then(this.extractData)
-                  .catch(this.handleError);
-}
-
-getProject(id){
-  return this.http.get('http://localhost:8080/projects/' +id).toPromise()
+export class TasksService {
+    constructor(private http: Http) { }
+ 
+    getTasksByPhaseIDAndProjectID(projectID, phaseID){
+        return this.http.get('http://localhost:8080/tasks/project/'+ projectID +'/phase/' + phaseID ).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
 }
@@ -41,6 +35,5 @@ getProject(id){
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
-
 
 }

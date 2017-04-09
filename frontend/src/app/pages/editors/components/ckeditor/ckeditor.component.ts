@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectsService} from '../../../projects/projects.service';
 import {OrdersService} from '../../../services/orders.service';
+import {PhasesService} from '../../../services/phases.service';
+import {FinancesService} from '../../../services/finances.service';
 import './ckeditor.loader';
 import 'ckeditor';
 import 'style-loader!./ckeditor.scss';
@@ -19,16 +21,40 @@ export class Ckeditor {
   };
 
   chosenAction = 'Add';
+  chosenForm = '';
   orders;
+  phases;
+  project;
+  tasks;
+  finances;
+
   id;
-  constructor(private route:ActivatedRoute, private ordersService:OrdersService) {
+
+  constructor(private route:ActivatedRoute, private router:Router, private ordersService:OrdersService, private phasesService:PhasesService, private financesService:FinancesService,
+              private projectsService:ProjectsService) 
+  {
   }
+
   ngOnInit(){
     this.id = this.route.snapshot.params['id'];
     console.log(this.id);
-}
-  chosenForm = '';
 
+    this.projectsService.getProject(this.id).then(data => {
+      this.project=data;
+       });
+  }
+
+goToTasks(phaseNumber, id)
+{
+  console.log("YoloSwag");
+  this.router.navigate(['/pages/tasks/'+id+'/'+phaseNumber]);
+}
+
+goToProducts(orderID, id)
+{
+  console.log("YoloSwag");
+  this.router.navigate(['/pages/products/'+id+'/'+orderID]);
+}
 
 
 
@@ -49,8 +75,20 @@ export class Ckeditor {
   	{
   		this.ordersService.getOrdersByProjectID(this.id).then(data => {
   		this.orders=data;
-  	});
+  	   });
   	}
+    else if(this.chosenForm == 'Phases')
+    {
+      this.phasesService.getPhasesByProjectID(this.id).then(data => {
+      this.phases=data;
+       });
+    }
+    else if(this.chosenForm == 'Finances')
+    {
+      this.financesService.getFinancesByProjectID(this.id).then(data => {
+      this.finances=data;
+       });
+    }
   }
 }
 

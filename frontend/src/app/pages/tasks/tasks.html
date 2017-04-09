@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+    <ba-card [title]="'Tasks for Phase ' + phaseID" baCardClass="with-scroll">
+      <div class="horizontal-scroll">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Task ID</th>
+                <th>Description</th>
+                <th>Estimated Time To Complete</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of tasks">
+                <td ngClass="nowrap">{{ item.taskID }}</td>
+                <td class="align-right">{{ item.description }}</td>
+                <td class="align-right">{{ item.estimatedTimeToComplete }}</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </ba-card>
+  </div>
+</div>

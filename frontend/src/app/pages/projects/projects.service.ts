@@ -21,6 +21,11 @@ getProject(id){
                   .then(this.extractData)
                   .catch(this.handleError);
 }
+getProjectByEmail(email){
+  return this.http.get('http://localhost:8080/projects/email/' +email).toPromise()
+                  .then(this.extractData)
+                  .catch(this.handleError);
+}
 
  updateStatus(status, id)
     {

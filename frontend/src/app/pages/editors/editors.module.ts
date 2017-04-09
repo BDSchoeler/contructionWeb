@@ -13,6 +13,7 @@ import {OrdersService} from '../services/orders.service';
 import {PhasesService} from '../services/phases.service';
 import {TasksService} from '../services/tasks.service';
 import {FinancesService} from '../services/finances.service';
+import {ProductsService} from '../services/products.service';
 
 
 
@@ -33,7 +34,8 @@ import {FinancesService} from '../services/finances.service';
   OrdersService,
   PhasesService,
   TasksService,
-  FinancesService
+  FinancesService,
+  ProductsService
   ]
 })
 export class EditorsModule {

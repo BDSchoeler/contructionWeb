@@ -15,6 +15,20 @@ router.get('order/:orderId',function(req,res,next){
     });
 
 });
+router.get('supplier/:Id',function(req,res,next){
+     console.log("what");
+    Product.getProductBySupplierId(req.params.Id,function(err,rows){
+
+        if(err)
+        {
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+
+});
 router.get('/:id?',function(req,res,next){
 
 if(req.params.id){

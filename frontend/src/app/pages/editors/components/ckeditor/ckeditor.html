@@ -11,7 +11,7 @@
 		        <p>Current Phase - {{project[0].currentPhase}}</p>
 		        <p>Locaton - {{project[0].location}}</p>
 		        <p>Type - {{project[0].projectType}}</p>
-		        <p>Size - {{project[0].size}}</p>
+		        <p>Size - {{project[0].size}} ft^2</p>
         	</div>
      	</ba-card>
   	</div>
@@ -43,6 +43,7 @@
 				   	 	<option value='Phase'>Phase</option>
 				    	<option value='Task'>Task</option>
 				    	<option value='Order'>Order</option>
+				    	<option value='Purchase'>Product</option>
   					</select>
 				</div>
   				<button type="submit" (click)="selectForm(formSelect1.value)" class="btn btn-danger">Submit</button>
@@ -58,6 +59,7 @@
   					<select class="form-control" id="exampleSelect1" #formSelect2>
 				   	 	<option value='Status'>Project Status</option>
 				    	<option value='Payment'>Order Payment Status</option>
+				    	<option value='Next Phase'>Project Phase</option>
   					</select>
 				</div>
   				<button type="submit" (click)="selectForm(formSelect2.value)" class="btn btn-danger">Submit</button>
@@ -89,18 +91,19 @@
 			<h5>Add A Phase</h5>
 			<form>
 		 		<div class="form-group">
-				    <input type="text" class="form-control" id="phaseTitle" placeholder="Phase Title">
+				    <input #phaseTitle type="text" class="form-control" id="phaseTitle" placeholder="Phase Title">
 		  		</div>
 			  	<div class="form-group">
-			    	<textarea class="form-control" placeholder="Description"></textarea>
+			    	<textarea #description class="form-control" placeholder="Description"></textarea>
 			  	</div>
 			  	<div class="form-group">
-				    <input type="text" class="form-control" id="estimatedCost" placeholder="Estimated Cost">
+				    <input #estimatedCost type="text" class="form-control" id="estimatedCost" placeholder="Estimated Cost">
 		  		</div>
 		  		<div class="form-group">
-				    <input type="text" class="form-control" id="estimatedCost" placeholder="Estimated Time To Completed (hours)">
+				    <input #estimatedTime type="text" class="form-control" id="estimatedTimeToComplete" placeholder="Estimated Time To Completed (hours)">
 		  		</div>
-		 		 <button type="submit" class="btn btn-danger">Submit</button>
+		  		<!-- Button here incomplete!!!!-->
+		 		 <button (click)="addPhase(phaseTitle.value, description.value, estimatedCost.value, estimatedTime.value, project[0].projectID)" type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>
@@ -113,15 +116,15 @@
 			<form>
 			<div class="form-group">
   					<label for="projectStatuses">Select associated Phase</label>
-  					<select class="form-control" id="projectStatuses">
-				   	 	<option>1</option>
-				    	<option>2</option>
+  					<select class="form-control" id="projectStatuses" >
+				   	 	<option *ngFor="let item of phases" #selectedPhase>{{item.phaseNumber}}</option>
   					</select>
 				</div>
 		 		<div class="form-group">
-				    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title">
+				    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title" #taskDescription>
+				    <input type="text" class="form-control" id="eCost" placeholder="Estimated Cost" #estimatedCost>
 		  		</div>
-		 		<button type="submit" class="btn btn-danger">Submit</button>
+		 		<button (click)="addTask(selectedPhase.value, taskDescription.value)" type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>
@@ -133,18 +136,56 @@
 		<ba-card title="Form" baCardClass="with-scroll">
 			<h5>Add An Order</h5>
 			<div class="form-group">
-  				<label for="exampleSelect1">Choose a supplier</label>
+  				<label for="exampleSelect1">Choose a supplier for this order.</label>
   				<select class="form-control" id="suppliers">
-					<option>List of suppliers here</option>
+					<option *ngFor="let item of suppliers" #selectedSupplier>{{item.supplierID}}:{{item.name}}</option>
   				</select>
 			</div>
+			<div class="form-group">
+  				<label for="exampleSelect1">Choose a phase to associate to this order</label>
+  				<select class="form-control" id="phases">
+					<option *ngFor="let item of phases" #selectedPhase>{{item.phaseNumber}}</option>
+  				</select>
+			</div>
+			<div>
+				<form>
+		 			<button type="submit" class="btn btn-danger">Create Order</button>
+				</form>
+			</div>
+		</ba-card>
+	</div>
+</div>
 
-			<!--Will only appear after supplier is selected -->
+<!-- Add a product -->
+<div *ngIf="chosenForm == 'Purchase'" class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<div class="form-group">
+  				<label for="exampleSelect1">Select an order to edit</label>
+  				<select class="form-control" id="orders" #selectedOrder>
+					<option *ngFor="let item of orders">{{item.orderID}}</option>
+  				</select>
+			</div>
+			<div>
+				<form>
+		 			<button (click)="readyToBuy(selectedOrder.value)" type="submit" class="btn btn-danger">Start Purchase</button>
+				</form>
+			</div>
+		</ba-card>
+	</div>
+</div>
+
+<div *ngIf="timeToBuy" class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Purchase" baCardClass="with-scroll">
+			<h5>Add A Product to an Order</h5>
+			<div class="form-group">
+  				<label for="exampleSelect1">Order: </label>
+			</div>
 			<div class="horizontal-scroll">
 				<table class="table table-bordered">
 				    <thead>
 					    <tr>
-					      <th>Select</th>
 					      <th>Product ID</th>
 					      <th>Name</th>
 					      <th>Supplier</th>
@@ -152,12 +193,11 @@
 					    </tr>
 					    </thead>
 					    <tbody>
-					    <tr *ngFor="let item of metricsTableData">
-					      <td><img src="{{ ( item.image | baAppPicture )}}" width="20" height="20"></td>
-					      <td ngClass="nowrap">{{ item.browser }}</td>
-					      <td class="align-right">{{ item.visits }}</td>
-					      <td class="align-right">{{ item.purchases }}</td>
-					      <td class="align-right">{{ item.percent }}</td>
+					    <tr *ngFor="let item of products">
+					      <td ngClass="nowrap">{{ item.productID }}</td>
+					      <td class="align-right">{{ item.name }}</td>
+					      <td class="align-right">{{ item.supplierID }}</td>
+					      <td class="align-right">{{ item.cost }}</td>
 					    </tr>
 				    </tbody>
 				</table>
@@ -172,9 +212,11 @@
 		 			<button type="submit" class="btn btn-danger">Place Order</button>
 				</form>
 			</div>
+
 		</ba-card>
 	</div>
 </div>
+
 
 <!-- Stuff for UPDATE -->
 <!-- Update status -->
@@ -192,7 +234,7 @@
 				    	<option value="Completed">Completed</option>
   					</select>
 				</div>
-		 		<button (click)="updateStatus(statusOption.value, project[0].projectID)" type="submit" class="btn btn-danger">Submit</button>
+		 		<button (click)="updateStatus(statusOption.value, project[0].projectID)" type="submit" class="btn btn-danger">Update</button>
 			</form>
 		</ba-card>
 	</div>
@@ -232,6 +274,25 @@
 				    </tbody>
 				</table>
 			</div>
+		</ba-card>
+	</div>
+</div>
+
+<!-- Update phase -->
+<div *ngIf="chosenForm == 'Next Phase'" class="row">
+	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
+		<ba-card title="Form" baCardClass="with-scroll">
+			<h5>Update Project Phase</h5>
+			<p>Current Phase = {{project[0].currentPhase}}</p>
+			<form>
+		 		<div class="form-group">
+	  				<label for="exampleSelect1">Choose a phase to associate to this order</label>
+	  				<select class="form-control" id="phases">
+						<option *ngFor="let item of phases" #selectedPhase>{{item.phaseNumber}}</option>
+	  				</select>
+				</div>
+		 		<button type="submit" class="btn btn-danger">Update</button>
+			</form>
 		</ba-card>
 	</div>
 </div>

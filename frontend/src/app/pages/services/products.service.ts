@@ -14,7 +14,12 @@ export class ProductsService {
         return this.http.get('http://localhost:8080/products/order/'+ orderID).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
-}
+    }
+
+    getProductsBySupplier(supplierID)
+    {
+      return this.http.get('http://localhost:8080/products/supplier/' + supplierID).toPromise().then(this.extractData).catch(this.handleError);
+    }
 
 
 

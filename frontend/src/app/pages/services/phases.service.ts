@@ -14,7 +14,12 @@ export class PhasesService {
         return this.http.get('http://localhost:8080/phases/project/' + id).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
-}
+    }
+
+    addPhase(name, description, estimatedCost, estimatedTime, proejectID)
+    {
+      //BACK END CALL
+    }
 
 
 

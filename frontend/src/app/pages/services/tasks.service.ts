@@ -14,7 +14,12 @@ export class TasksService {
         return this.http.get('http://localhost:8080/tasks/project/'+ projectID +'/phase/' + phaseID ).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
-}
+    }
+
+    addTask(phaseNumber, taskDescription)
+    {
+       //Add task backend
+    }
 
 
 

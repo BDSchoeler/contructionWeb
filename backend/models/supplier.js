@@ -8,7 +8,7 @@ return db.query("Select * from Supplier",callback);
 },
  getSupplierById:function(id,callback){
  
-return db.query("select * from Supplier where Id=?",[id],callback);
+return db.query("select * from Supplier where supplierID=?",[id],callback);
  },
  addSupplier:function(Supplier,callback){
  return db.query("Insert into Supplier values(?,?,?)",[Supplier.Id,Supplier.Title,Supplier.Status],callback);

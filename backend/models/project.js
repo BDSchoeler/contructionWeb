@@ -10,6 +10,10 @@ return db.query("Select * from Projects",callback);
  
 return db.query("select * from Projects where projectID=?",[id],callback);
  },
+  getProjectByEmail:function(email,callback){
+ 
+return db.query("select * from Projects p, Access a where a.email=? and a.projectID=p.projectID",[email],callback);
+ },
  getProjectCostById:function(projectID,callback){
 return db.query("SELECT SUM(totalCost) AS Total Cost FROM orders WHERE orders.projectID = ?",[projectID],callback);
  },

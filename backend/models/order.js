@@ -14,14 +14,17 @@ return db.query("select * from Orders where ID=?",[id],callback);
  
     return db.query("select * from Orders where projectID=?",[id],callback);
  },
- addOrder:function(Order,callback){
- return db.query("Insert into Orders values(?,?,?,?,?,?)",[Order.orderID,Order.supplierID,Order.totalCost,Order.phaseNumber, Order.deliveryDate, Order.orderStatus],callback);
+ addOrder:function(Order,orderID,callback){
+ return db.query("Insert into Orders values(?,?,?,?,?,?)",[orderID,Order.supplierID,0,Order.projectID,Order.phaseNumber, "4/22/2017", Order.orderStatus],callback);
  },
  deleteOrder:function(id,callback){
   return db.query("delete from Orders where Id=?",[id],callback);
  },
  updateOrder:function(id,Order,callback){
   return db.query("update Orders set orderStatus=? where orderId=?",[Order.orderStatus,id],callback);
+ },
+ findMax:function(callback){
+  return db.query("SELECT MAX(orderID) as max FROM Orders",callback);
  }
  
 };

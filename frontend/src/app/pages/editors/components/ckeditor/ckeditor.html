@@ -354,8 +354,8 @@
 					    <tr *ngFor="let item of phases">
 					      <td><button (click)="goToTasks(item.phaseNumber,id)" type="button" class="btn btn-info btn-icon"><i class="ion-information"></i></button></td>
 					      <td ngClass="nowrap"><a [routerLink]="'/pages/tasks/'+id+'/'+item.phaseNumber" routerLinkActive="active" target="_blank">{{ item.phaseNumber }}</a></td>
-					      <td class="align-right">{{ item.title }}</td>
-					      <td>not added yet</td>
+					      <td class="align-right">{{ item.description }}</td>
+					      <td class="align-right">{{ item.estimatedTimeToComplete }}</td>
 					      <td class="align-right">{{ item.estimatedCost }}</td>
 					    </tr>
 

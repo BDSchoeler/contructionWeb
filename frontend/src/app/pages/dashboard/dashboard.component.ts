@@ -10,7 +10,7 @@ import { RouterModule, Router } from '@angular/router';
 export class Dashboard {
   projects;
   user;
-  constructor(private router: Router, projectsService: ProjectsService) {
+  constructor(private router: Router, private projectsService: ProjectsService) {
   	this.user=localStorage.getItem('currentUser');
   	if(this.user){
   		this.user= JSON.parse(this.user)[0];
@@ -33,6 +33,8 @@ export class Dashboard {
 
 
   addProject(location, type, size){
+    console.log("adding project");
+    
     this.projectsService.addProject(location, type, size, this.user.email, this.user.type);
   }
 

@@ -403,7 +403,7 @@
 					      <td ngClass="nowrap">{{ item.financeRecordID }}</td>
 					      <td class="align-right">{{ item.estimatedTotalCost }}</td>
 					      <td class="align-right">{{ item.totalCostToDate }}</td>
-					      <td class="align-right">Calculate remaining cost</td>
+					      <td class="align-right">{{ item.estimatedTotalCost-item.totalCostToDate}}</td>
 					    </tr>
 				    </tbody>
 				</table>

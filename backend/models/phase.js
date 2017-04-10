@@ -13,8 +13,9 @@ return db.query("select * from Phases where Id=?",[id],callback);
  getPhaseByProjectId:function(projectID,callback){
 return db.query("Select * from Phases where projectID=?",[projectID],callback);
  },
- addPhase:function(phaseId,max,callback){
- return db.query("Insert into Phases (phaseId, name, description, projectID, estimatedCost, estimatedTimeToComplete) values(?,?,?,?,0,0)",[phaseId, Phase.name,Phase.description, Phase.projectID],callback);
+ addPhase:function(Phase,max,callback){
+console.log(Phase);
+ return db.query("Insert into Phases (phaseNumber, name, description, projectID, estimatedCost, estimatedTimeToComplete) values(?,?,?,?,0,0)",[max, Phase.title,Phase.description, Phase.projectId],callback);
  },
  deletePhase:function(id,callback){
   return db.query("delete from Phases where Id=?",[id],callback);

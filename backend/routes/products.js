@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Product=require('../models/product');
-router.get('order/:orderId',function(req,res,next){
+router.get('/order/:orderId',function(req,res,next){
 
     Product.getProductByOrderId(req.params.orderId,function(err,rows){
 
@@ -15,10 +15,10 @@ router.get('order/:orderId',function(req,res,next){
     });
 
 });
-router.get('supplier/:Id',function(req,res,next){
+router.get('/supplier/:id',function(req,res,next){
      console.log("what");
-    Product.getProductBySupplierId(req.params.Id,function(err,rows){
-
+    Product.getProductBySupplierId(req.params.id,function(err,rows){
+     
         if(err)
         {
             res.json(err);

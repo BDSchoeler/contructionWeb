@@ -17,7 +17,7 @@ export class PhasesService {
     }
 
 
-    addPhase(name, description,  procjectID)
+    addPhase(name, description,  projectID)
 
     {
         return this.http.post('http://localhost:8080/phases/',{'title':name,'description':description,'projectId':projectID}).toPromise()

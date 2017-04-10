@@ -57,7 +57,8 @@ router.post('/',function(req,res,next){
         max=rows[0].max+1;
         }
         Order.addOrder(req.body,max,function(err,count){
-
+                console.log(err);
+            console.log(count);
             //console.log(req.body);
             if(err)
             {

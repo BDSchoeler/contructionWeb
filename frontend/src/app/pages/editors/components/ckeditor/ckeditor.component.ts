@@ -99,6 +99,11 @@ addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime, projectID)
     this.tasksService.addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime, projectID);
 }
 
+addOrder(selectSupplier, selectedPhase, projectID)
+{
+  this.ordersService.addOrder(selectedSupplier, selectedPhase, projectID);
+}
+
 readyToBuy(selectedOrder)
 {
   console.log(selectedOrder);

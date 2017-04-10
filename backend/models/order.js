@@ -15,7 +15,7 @@ return db.query("select * from Orders where ID=?",[id],callback);
     return db.query("select * from Orders where projectID=?",[id],callback);
  },
  addOrder:function(Order,orderID,callback){
- return db.query("Insert into Orders values(?,?,?,?,?,?)",[orderID,Order.supplierID,0,Order.projectID,Order.phaseNumber, "4/22/2017", Order.orderStatus],callback);
+ return db.query("Insert into Orders values(?,?,?,?,?,?,?)",[orderID,Order.supplierID,0,Order.projectID,Order.phaseNumber, "2017-04-23", Order.orderStatus],callback);
  },
  deleteOrder:function(id,callback){
   return db.query("delete from Orders where Id=?",[id],callback);

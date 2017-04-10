@@ -66,14 +66,18 @@ else{
 });
 router.post('/',function(req,res,next){
     var max=1
-    Tasks.findMax(function(err,rows){
+    Task.findMax(function(err,rows){
         if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
         max=rows[0].max+1;
         }
-
+        console.log(max);
         Task.addTask(req.body,max,function(err,count){
+                    console.log(err);
+                console.log(count);
+            if(!err){
              Task.addTaskRelation(req.body,max,function(err,count){
-            
+                    console.log(err);
+                    console.log(count);
                     if(err)
                     {
                         res.json(err);
@@ -82,6 +86,7 @@ router.post('/',function(req,res,next){
                         res.json(req.body);//or return count for 1 & 0
                     }
              });
+            }
         });
     });
 });

@@ -51,22 +51,33 @@ else{
 }
 });
 router.post('/',function(req,res,next){
-    var max=1
+    var max=1;
+    var phaseMax=1;
+    console.log(req.body);
     Project.findMax(function(err,rows){
+        console.log("max found");
         if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
         max=rows[0].max+100000;
-        }addProjectAccess
+        }
         Project.addProject(req.body,max,function(err,count){
+
             if(!err){
-            Project.addProject(req.body,max,function(err,count){
-            //console.log(req.body);
-            if(err)
-            {
-                res.json(err);
-            }
-            else{
+            Project.addProjectAccess(req.body,max,function(err,count){
+            Project.findMaxFinance(function(err,count){
+                if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
+                phaseMax=rows[0].max+1;
+                }
+                Project.addFinance(phaseMax,max,function(err,count){
+
+                if(err)
+                {
+                    res.json(err);
+                }
+                else{
                     res.json(req.body);//or return count for 1 & 0
-            }
+                }
+                });
+                });
             });
             }
         });

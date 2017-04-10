@@ -1,5 +1,3 @@
-<a routerLink="/pages/editors/ckeditor/200000" routerLinkActive="active">Test for lori</a>
-
 
 <div class="row">
   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -9,6 +7,7 @@
           <thead>
             <tr class="black-muted-bg">
               <th>Project ID</th>
+              <th class="align-right">Location</th>
               <th class="align-right">Current Phase</th>
               <th class="align-right">Amount Allocated</th>
               <th class="align-right">Expense Difference</th>
@@ -18,9 +17,10 @@
           <tbody>
             <tr *ngFor="let item of projects" class="no-top-border">
               <td ngClass="nowrap"><a [routerLink]="'/pages/editors/ckeditor/'+item.projectID" routerLinkActive="active"> {{item.projectID}}</a></td>
+              <td class="align-right">{{item.location}}</td>
               <td class="align-right">{{item.currentPhase}}</td>
-              <td class="align-right">Get amount allocated from finances $</td>
-              <td class="align-right">Calculate the amount left to spend $</td>
+              <td class="align-right">{{item.estimatedTotalCost}}$</td>
+              <td class="align-right">{{item.estimatedTotalCost-item.totalCostToDate}}$</td>
               <td class="align-right">{{item.status}}</td>
               
             </tr>
@@ -50,12 +50,7 @@
           <button (click)="addProject(location.value, typeSelector.value, size.value)" type="submit" class="btn btn-danger">Submit</button>
         </form>
       </div>
-      <p>Note to bryce: this requires the projectID to be generated, currentPhase to be set to null if possible? and status to be set to Planning.</p>
-      <p>Maybe by creating a project, it immediately creates a phase 1 with constant info</p>
-      <p>Phase Title: Initial Setup</p>
-      <p>Description: Start of project</p>
-      <p>Estimated Cost: 0</p>
-      <p>Estimated Time: 0 </p>
+
     </ba-card>
   </div>
 </div>

@@ -43,10 +43,10 @@ getProjectByEmail(email){
         return this.http.put('http://localhost:8080/projects/phase/'+id, {'currentPhase':phase}).toPromise();
     }
 
-addProject(location, type, size, email, userTpe)
+addProject(location, type, size, email, userType)
 {
-
-    return this.http.post('http://localhost:8080/projects/',{'email':email,'projectType':type, 'Size':size, 'location':location}).toPromise()
+  console.log("project trying to add");
+return this.http.post('http://localhost:8080/projects/',{'email':email,'projectType':type, 'Size':size, 'location':location}).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
 

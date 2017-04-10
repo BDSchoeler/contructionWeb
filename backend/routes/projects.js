@@ -111,4 +111,19 @@ router.put('/:id',function(req,res,next){
         }
     });
 });
+
+router.put('/phase/:id',function(req,res,next){
+
+    Project.updateProjectPhase(req.params.id,req.body,function(err,rows){
+
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(rows);
+        }
+    });
+});
 module.exports=router;

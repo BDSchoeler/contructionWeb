@@ -17,7 +17,7 @@ export class OrdersService {
     }
     addOrder(supplierID, projectID, phaseNumber, orderStatus)
     {
-        return this.http.post('http://localhost:8080/orders/',{'name':name,'description':description,'projectID':projectID}).toPromise()
+        return this.http.post('http://localhost:8080/orders/',{"orderStatus":orderStatus,'supplierID':supplierID,'phaseNumber':phaseNumber,'projectID':projectID}).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
     }

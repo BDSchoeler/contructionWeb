@@ -16,15 +16,18 @@ return db.query("select * from Projects p, Access a where a.email=? and a.projec
  },
  getProjectCostById:function(projectID,callback){
 return db.query("SELECT SUM(totalCost) AS Total Cost FROM orders WHERE orders.projectID = ?",[projectID],callback);
- },
- addProject:function(Project,callback){
- return db.query("Insert into Projects values(?,?,?)",[Project.Id,Project.Title,Project.Status],callback);
+ }, //type, size, e location, 
+ addProject:function(Project,projectID,callback){
+ return db.query("Insert into Projects (projectID, status, projectType, location, currentPhase, size, estimatedTimeToComplete) values(?,?,?,?,?,?,?)",[projectID,"Planning" ,Project.projectType,Project.location,1,Project.Size,0],c<allback);
  },
  deleteProject:function(id,callback){
   return db.query("delete from Projects where Id=?",[id],callback);
  },
  updateProject:function(id,Project,callback){
   return db.query("update Projects set status=? where projectID=?",[Project.status,id],callback);
+ },
+ findMax:function(id,Project,callback){
+  return db.query("SELECT MAX(projectID) as max FROM Projects",callback);
  }
  
 };

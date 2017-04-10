@@ -29,4 +29,9 @@ export class Dashboard {
   	}
   }
 
+
+  makeNewProject(){
+    
+  }
+
 }

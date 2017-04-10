@@ -51,8 +51,12 @@ else{
 }
 });
 router.post('/',function(req,res,next){
-
-        Phase.addPhase(req.body,function(err,count){
+    var max=1
+    Phase.findMax(req.body.projectId,function(err,rows){
+        if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
+        max=rows[0].max+1;
+        }
+            Phase.addPhase(req.body,max,function(err,count){
 
             //console.log(req.body);
             if(err)
@@ -63,19 +67,10 @@ router.post('/',function(req,res,next){
                     res.json(req.body);//or return count for 1 & 0
             }
         });
+    });
+
 });
-router.post('/:id',function(req,res,next){
-  Phase.deleteAll(req.body,function(err,count){
-    if(err)
-    {
-      res.json(err);
-    }
-    else
-    {
-      res.json(count);
-    }
-  });
-});
+
 router.delete('/:id',function(req,res,next){
 
         Phase.deletePhase(req.params.id,function(err,count){

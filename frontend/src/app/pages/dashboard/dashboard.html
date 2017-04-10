@@ -34,23 +34,20 @@
       <div class="horizontal-scroll">
         <form>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Location">
+            <input type="text" class="form-control" placeholder="Location" #location>
           </div>
           <div class="form-group">
             <label>Select Type</label>
-            <select class="form-control">
+            <select class="form-control" #typeSelector>
               <option value='House'>House</option>
               <option value='Condo'>Condo</option>
             </select>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Size (ft^2)">
+            <input type="text" class="form-control" placeholder="Size (ft^2)" #size>
           </div>
-          <div class="form-group">
-            <input #estimatedTime type="text" class="form-control" id="estimatedTimeToComplete" placeholder="Estimated Time To Completed (hours)">
-          </div>
-            <!-- Button here incomplete!!!!-->
-           <button type="submit" class="btn btn-danger">Submit</button>
+          <p>Estimated Cost will be calculated as you add some tasks to some phases.</p>
+          <button (click)="addProject(location.value, typeSelector.value, size.value)" type="submit" class="btn btn-danger">Submit</button>
         </form>
       </div>
       <p>Note to bryce: this requires the projectID to be generated, currentPhase to be set to null if possible? and status to be set to Planning.</p>

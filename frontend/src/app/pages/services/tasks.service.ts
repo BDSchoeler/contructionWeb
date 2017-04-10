@@ -16,9 +16,11 @@ export class TasksService {
                   .catch(this.handleError);
     }
 
-    addTask(phaseNumber, taskDescription, estimatedTime, estimatedCost)
+    addTask(phaseNumber, taskDescription, estimatedTime, estimatedCost, projectID)
     {
-       //Add task backend
+      return this.http.post('http://localhost:8080/tasks/',{ 'projectID': projectID, 'phaseNumber' :phaseNumber,'taskDescription': taskDescription, 'estimatedTimeToComplete':estimatedTime, 'estimatedCost':estimatedCost} ).toPromise()
+          .then(this.extractData)
+          .catch(this.handleError);
     }
 
 

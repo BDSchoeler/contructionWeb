@@ -10,6 +10,7 @@ return db.query("Select * from Projects",callback);
  
 return db.query("select * from Projects where projectID=?",[id],callback);
  },
+
   getProjectByEmail:function(email,callback){
  
 return db.query("select * from Projects p, Access a where a.email=? and a.projectID=p.projectID",[email],callback);
@@ -19,6 +20,9 @@ return db.query("SELECT SUM(totalCost) AS Total Cost FROM orders WHERE orders.pr
  }, //type, size, e location, 
  addProject:function(Project,projectID,callback){
  return db.query("Insert into Projects (projectID, status, projectType, location, currentPhase, size, estimatedTimeToComplete) values(?,?,?,?,?,?,?)",[projectID,"Planning" ,Project.projectType,Project.location,1,Project.Size,0],callback);
+ },
+  addProjectAccess:function(Project,projectID,callback){
+ return db.query("Insert into Accesss values(?,?)",[projectID, Project.email],callback);
  },
  deleteProject:function(id,callback){
   return db.query("delete from Projects where Id=?",[id],callback);

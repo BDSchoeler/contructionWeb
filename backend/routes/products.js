@@ -63,6 +63,7 @@ else{
 router.post('/',function(req,res,next){
 
         Product.addProduct(req.body,function(err,count){
+        Product.updateOrderPrice(req.body.orderID,function(err,count){
 
             //console.log(req.body);
             if(err)
@@ -72,6 +73,8 @@ router.post('/',function(req,res,next){
             else{
                 res.json(req.body);//or return count for 1 & 0
             }
+        });
+
         });
 });
 router.post('/:id',function(req,res,next){

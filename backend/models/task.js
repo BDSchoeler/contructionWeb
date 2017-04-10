@@ -4,9 +4,30 @@ var Task={
 getAllTasks:function(callback){
  
 return db.query("Select * from Tasks",callback);
- 
 },
- getTaskById:function(id,callback){
+updateTimeToCompletePhase:function(callback){
+	return db.query("UPDATE Phases p SET p.estimatedTimeToComplete = (SELECT SUM(t.estimatedTimeToComplete) FROM PhaseTasks pt, Tasks t WHERE pt.projectID = p.projectID AND pt.phaseID = p.phaseNumber AND pt.taskID = t.taskID)",callback);
+},
+
+updateTimeToCompleteProject:function(callback){
+	return db.query("UPDATE Projects p SET p.estimatedTimeToComplete = (SELECT SUM(t.estimatedTimeToComplete) FROM PhaseTasks pt, Tasks t WHERE pt.projectID = p.projectID AND pt.taskID = t.taskID)",callback);
+},
+updateTimeToCompleteTask:function(callback){
+	return db.query("UPDATE Tasks t SET t.estimatedTimeToComplete = FLOOR(RAND() * (2500 - 500) + 500) WHERE t.estimatedTimeToComplete=0",callback);
+},
+
+updateCostToCompletePhase:function(id,callback){
+ 
+return db.query("UPDATE Phases ph SET ph.estimatedCost = (SELECT SUM(t.estimatedCost) FROM Tasks t, PhaseTasks pt WHERE ph.phaseNumber = pt.phaseID AND pt.taskID = t.taskID AND pt.projectID = ph.projectID)",[id],callback);
+ },
+
+
+updateCostToCompleteProject:function(id,callback){
+ 
+return db.query("UPDATE Finances f SET f.estimatedTotalCost = (SELECT SUM(p.estimatedCost) FROM Phases p WHERE f.projectID = p.projectID)",[id],callback);
+ }, 
+
+getTaskById:function(id,callback){
  
 return db.query("select * from Tasks where Id=?",[id],callback);
  },

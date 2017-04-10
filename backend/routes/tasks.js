@@ -65,18 +65,25 @@ else{
 }
 });
 router.post('/',function(req,res,next){
+    var max=1
+    Tasks.findMax(function(err,rows){
+        if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
+        max=rows[0].max+1;
+        }
 
-        Task.addTask(req.body,function(err,count){
-
-            //console.log(req.body);
-            if(err)
-            {
-                res.json(err);
-            }
-            else{
-                    res.json(req.body);//or return count for 1 & 0
-            }
+        Task.addTask(req.body,max,function(err,count){
+             Task.addTaskRelation(req.body,max,function(err,count){
+            
+                    if(err)
+                    {
+                        res.json(err);
+                    }
+                    else{
+                        res.json(req.body);//or return count for 1 & 0
+                    }
+             });
         });
+    });
 });
 router.post('/:id',function(req,res,next){
   Task.deleteAll(req.body,function(err,count){

@@ -5,6 +5,10 @@ getAllProducts:function(callback){
  
 return db.query("select * from Product",callback);
 },
+updateOrderPrice:function(orderID,callback){
+return db.query("UPDATE Orders o1 SET o1.totalCost = (SELECT s.deliveryCost + s.supplierFee FROM Supplier s WHERE o1.supplierID = s.supplierID) + (SELECT SUM(p.cost * op.amount) FROM Product p, OrderedProducts op WHERE o1.orderID = op.orderID AND op.productID = p.productID) WHERE o1.orderID = ?",[orderID],callback);
+}, 
+
  getProductById:function(id,callback){
  
 return db.query("select * from Product where Id=?",[id],callback);

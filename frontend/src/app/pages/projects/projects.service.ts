@@ -46,7 +46,7 @@ getProjectByEmail(email){
 addProject(location, type, size, email, userTpe)
 {
 
-    return this.http.post('http://localhost:8080/projects/',{'projectType':type, 'Size':size, 'location':location}).toPromise()
+    return this.http.post('http://localhost:8080/projects/',{'email':email,'projectType':type, 'Size':size, 'location':location}).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
 

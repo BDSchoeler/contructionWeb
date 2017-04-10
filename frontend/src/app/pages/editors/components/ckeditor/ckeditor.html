@@ -109,16 +109,21 @@
 			<h5>Add A Task</h5>
 			<form>
 			<div class="form-group">
-  					<label for="projectStatuses">Select associated Phase</label>
-  					<select class="form-control" id="projectStatuses" >
-				   	 	<option *ngFor="let item of phases" #selectedPhase>{{item.phaseNumber}}</option>
-  					</select>
-				</div>
-		 		<div class="form-group">
-				    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title" #taskDescription>
-				    <input type="text" class="form-control" id="eCost" placeholder="Estimated Cost" #estimatedCost>
-		  		</div>
-		 		<button (click)="addTask(selectedPhase.value, taskDescription.value)" type="submit" class="btn btn-danger">Submit</button>
+  				<label for="projectStatuses">Select associated Phase</label>
+  				<select class="form-control" id="projectStatuses" #selectedPhase>
+				  	 <option *ngFor="let item of phases">{{item.phaseNumber}}</option>
+  				</select>
+			</div>
+		 	<div class="form-group">
+			    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title/Description" #taskDescription>
+		  	</div>
+		  	<div class="form-group">
+		  		<input type="text" class="form-control" id="eCost" placeholder="Estimated Cost" #estimatedCost>
+		  	</div>
+		  	<div class="form-group">
+		  		<input type="text" class="form-control" id="eTime" placeholder="Estimated Time To Complete" #estimatedTime>
+		  	</div>
+		 	<button (click)="addTask(selectedPhase.value, taskDescription.value, estimatedCost.value, estimatedTime.value)" type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>

@@ -17,7 +17,7 @@ return db.query("select * from Product p, OrderedProducts op where op.orderID = 
 	return db.query("select * from SupplierProducts sp, Product p where sp.supplierID = ? AND p.productID = sp.productID",[id],callback);
  },
  addProduct:function(Product,callback){
- return db.query("Insert into Product values(?,?,?)",[Product.Id,Product.Title,Product.Status],callback);
+ return db.query("Insert into OrderedProducts values(?,?,?)",[Product.productID,Product.orderID,Product.amount],callback);
  },
  deleteProduct:function(id,callback){
   return db.query("delete from Product where Id=?",[id],callback);

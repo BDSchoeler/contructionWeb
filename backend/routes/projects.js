@@ -55,9 +55,10 @@ router.post('/',function(req,res,next){
     Project.findMax(function(err,rows){
         if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
         max=rows[0].max+100000;
-        }
+        }addProjectAccess
         Project.addProject(req.body,max,function(err,count){
-
+            if(!err){
+            Project.addProject(req.body,max,function(err,count){
             //console.log(req.body);
             if(err)
             {
@@ -65,6 +66,8 @@ router.post('/',function(req,res,next){
             }
             else{
                     res.json(req.body);//or return count for 1 & 0
+            }
+            });
             }
         });
     });

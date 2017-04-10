@@ -287,8 +287,8 @@
 			<form>
 		 		<div class="form-group">
 	  				<label for="exampleSelect1">Choose a phase to associate to this order</label>
-	  				<select class="form-control" id="phases">
-						<option *ngFor="let item of phases" #selectedPhase>{{item.phaseNumber}}</option>
+	  				<select class="form-control" id="phases" #selectedPhase>
+						<option *ngFor="let item of phases" >{{item.phaseNumber}}</option>
 	  				</select>
 				</div>
 		 		<button  (click)="updatePhase(selectedPhase.value, project[0].projectID)" type="submit" class="btn btn-danger">Update</button>

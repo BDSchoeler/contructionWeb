@@ -16,9 +16,13 @@ export class PhasesService {
                   .catch(this.handleError);
     }
 
-    addPhase(name, description, projectID)
+
+    addPhase(name, description,  proejectID)
+
     {
-      //BACK END CALL
+        return this.http.post('http://localhost:8080/phases/',{'title':name,'description':description,'projectId':projectID}).toPromise()
+                  .then(this.extractData)
+                  .catch(this.handleError);
     }
 
 

@@ -32,6 +32,7 @@ export class Ckeditor {
   suppliers;
   products;
   timeToBuy = false;
+  selectedOrder;
   desiredSupplier;
 
   id;
@@ -108,7 +109,7 @@ addOrder(selectedSupplier, selectedPhase, projectID)
 readyToBuy(selectedOrder)
 {
   console.log(selectedOrder);
-
+  this.selectedOrder = selectedOrder;
   for(var i = 0; i< this.orders.length; i++)
   {
     if(this.orders[i].orderID == selectedOrder)

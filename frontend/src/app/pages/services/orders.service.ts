@@ -15,7 +15,12 @@ export class OrdersService {
                   .then(this.extractData)
                   .catch(this.handleError);
     }
-
+    addOrder(supplierID, projectID, phaseNumber, orderStatus)
+    {
+        return this.http.post('http://localhost:8080/orders/',{'name':name,'description':description,'projectID':projectID}).toPromise()
+                  .then(this.extractData)
+                  .catch(this.handleError);
+    }
     updateOrderPaymentStatus(orderStatus, orderID)
     {
         return this.http.put('http://localhost:8080/orders/'+orderID, {'orderStatus':orderStatus}).toPromise();

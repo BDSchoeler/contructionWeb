@@ -99,8 +99,9 @@ addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime, projectID)
     this.tasksService.addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime, projectID);
 }
 
-addOrder(selectSupplier, selectedPhase, projectID)
+addOrder(selectedSupplier, selectedPhase, projectID)
 {
+  console.log(selectedSupplier);
   this.ordersService.addOrder(selectedSupplier, selectedPhase, projectID);
 }
 

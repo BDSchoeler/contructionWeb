@@ -30,8 +30,8 @@ export class Dashboard {
   }
 
 
-  makeNewProject(){
-    
+  addProject(location, type, size){
+    this.projectsService.addProject(location, type, size);
   }
 
 }

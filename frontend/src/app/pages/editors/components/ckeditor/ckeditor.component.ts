@@ -85,14 +85,18 @@ updatePhase(phaseOption, projectID)
     });*/
 }
 
-addPhase(name, description, estimatedCost, estimatedTime, projectID)
+addPhase(name, description, projectID)
 {
-    this.phasesService.addPhase(name, description, estimatedCost, estimatedCost, projectID);
+    this.phasesService.addPhase(name, description, projectID);
 }
 
-addTask(phaseNumber, taskDescription)
+addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime)
 {
-    this.tasksService.addTask(phaseNumber, taskDescription);
+  console.log(phaseNumber);
+  console.log(taskDescription);
+  console.log(estimatedCost);
+  console.log(estimatedTime);
+    this.tasksService.addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime);
 }
 
 readyToBuy(selectedOrder)

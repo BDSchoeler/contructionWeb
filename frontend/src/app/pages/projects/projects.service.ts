@@ -43,6 +43,12 @@ addProject(project){
        //something to update the currentPhase of an object
     }
 
+addProject(location, type, size)
+{
+
+  //Add implementation
+}
+
 
 
   private extractData(res: Response) {

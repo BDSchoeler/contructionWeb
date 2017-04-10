@@ -96,14 +96,8 @@
 			  	<div class="form-group">
 			    	<textarea #description class="form-control" placeholder="Description"></textarea>
 			  	</div>
-			  	<div class="form-group">
-				    <input #estimatedCost type="text" class="form-control" id="estimatedCost" placeholder="Estimated Cost">
-		  		</div>
-		  		<div class="form-group">
-				    <input #estimatedTime type="text" class="form-control" id="estimatedTimeToComplete" placeholder="Estimated Time To Completed (hours)">
-		  		</div>
-		  		<!-- Button here incomplete!!!!-->
-		 		 <button (click)="addPhase(phaseTitle.value, description.value, estimatedCost.value, estimatedTime.value, project[0].projectID)" type="submit" class="btn btn-danger">Submit</button>
+			  	<p>Note: Estimated time and cost will be calcualted accordingly to the tasks within this phase.</p>
+		 		 <button (click)="addPhase(phaseTitle.value, description.value, project[0].projectID)" type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>
@@ -115,16 +109,21 @@
 			<h5>Add A Task</h5>
 			<form>
 			<div class="form-group">
-  					<label for="projectStatuses">Select associated Phase</label>
-  					<select class="form-control" id="projectStatuses" >
-				   	 	<option *ngFor="let item of phases" #selectedPhase>{{item.phaseNumber}}</option>
-  					</select>
-				</div>
-		 		<div class="form-group">
-				    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title" #taskDescription>
-				    <input type="text" class="form-control" id="eCost" placeholder="Estimated Cost" #estimatedCost>
-		  		</div>
-		 		<button (click)="addTask(selectedPhase.value, taskDescription.value)" type="submit" class="btn btn-danger">Submit</button>
+  				<label for="projectStatuses">Select associated Phase</label>
+  				<select class="form-control" id="projectStatuses" #selectedPhase>
+				  	 <option *ngFor="let item of phases">{{item.phaseNumber}}</option>
+  				</select>
+			</div>
+		 	<div class="form-group">
+			    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title/Description" #taskDescription>
+		  	</div>
+		  	<div class="form-group">
+		  		<input type="text" class="form-control" id="eCost" placeholder="Estimated Cost" #estimatedCost>
+		  	</div>
+		  	<div class="form-group">
+		  		<input type="text" class="form-control" id="eTime" placeholder="Estimated Time To Complete" #estimatedTime>
+		  	</div>
+		 	<button (click)="addTask(selectedPhase.value, taskDescription.value, estimatedCost.value, estimatedTime.value)" type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>

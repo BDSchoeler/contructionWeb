@@ -85,9 +85,9 @@ updatePhase(phaseOption, projectID)
     });*/
 }
 
-addPhase(name, description, estimatedCost, estimatedTime, projectID)
+addPhase(name, description, projectID)
 {
-    this.phasesService.addPhase(name, description, estimatedCost, estimatedCost, projectID);
+    this.phasesService.addPhase(name, description, projectID);
 }
 
 addTask(phaseNumber, taskDescription)

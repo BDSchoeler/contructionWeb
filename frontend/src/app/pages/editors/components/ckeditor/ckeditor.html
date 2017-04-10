@@ -96,14 +96,8 @@
 			  	<div class="form-group">
 			    	<textarea #description class="form-control" placeholder="Description"></textarea>
 			  	</div>
-			  	<div class="form-group">
-				    <input #estimatedCost type="text" class="form-control" id="estimatedCost" placeholder="Estimated Cost">
-		  		</div>
-		  		<div class="form-group">
-				    <input #estimatedTime type="text" class="form-control" id="estimatedTimeToComplete" placeholder="Estimated Time To Completed (hours)">
-		  		</div>
-		  		<!-- Button here incomplete!!!!-->
-		 		 <button (click)="addPhase(phaseTitle.value, description.value, estimatedCost.value, estimatedTime.value, project[0].projectID)" type="submit" class="btn btn-danger">Submit</button>
+			  	<p>Note: Estimated time and cost will be calcualted accordingly to the tasks within this phase.</p>
+		 		 <button (click)="addPhase(phaseTitle.value, description.value, project[0].projectID)" type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>

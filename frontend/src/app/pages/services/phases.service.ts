@@ -16,7 +16,7 @@ export class PhasesService {
                   .catch(this.handleError);
     }
 
-    addPhase(name, description, estimatedCost, estimatedTime, proejectID)
+    addPhase(name, description, projectID)
     {
       //BACK END CALL
     }

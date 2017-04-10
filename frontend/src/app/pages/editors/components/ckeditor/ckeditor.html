@@ -198,36 +198,35 @@
   				<label for="exampleSelect1">Order: {{selectedOrder}} </label>
 			</div>
 			<div class="horizontal-scroll">
-				<table class="table table-bordered">
-				    <thead>
-					    <tr>
-					      <th>Product ID</th>
-					      <th>Name</th>
-					      <th>Supplier</th>
-					      <th>Cost</th>
-					    </tr>
-					    </thead>
-					    <tbody>
-					    <tr *ngFor="let item of products">
-					      <td ngClass="nowrap">{{ item.productID }}</td>
-					      <td class="align-right">{{ item.name }}</td>
-					      <td class="align-right">{{ item.supplierID }}</td>
-					      <td class="align-right">{{ item.cost }}</td>
-					    </tr>
-				    </tbody>
-				</table>
-			</div>
-			<div class="align-right">
-
-			</div>
-			<div class="align-right">
-				<p>Total Cost: </p>
 				<form>
-					<button type="submit" class="btn btn-danger">Calculate Cost</button>
-		 			<button type="submit" class="btn btn-danger">Place Order</button>
+					<table class="table table-bordered">
+					    <thead>
+						    <tr>
+						      <th>Product ID</th>
+						      <th>Name</th>
+						      <th>Supplier ID</th>
+						      <th>Cost</th>
+						      <th>Amount To Purchase</th>
+						      <th>Add To Order</th>
+						    </tr>
+						    </thead>
+						    <tbody>
+						    <tr *ngFor="let item of products">
+						      <td ngClass="nowrap" #selectedProduct>{{ item.productID }}</td>
+						      <td class="align-left">{{ item.name }}</td>
+						      <td class="align-right">{{ item.supplierID }}</td>
+						      <td class="align-right">{{ item.cost }}</td>
+						      <td>
+						      	<div class="form-group">
+				    				<input #amount type="text" class="form-control" id="phaseTitle" placeholder="Amount">
+		  						</div>
+		  					  </td>
+						      <td><button (click)="addProduct(item.productID, amount.value)" type="submit" class="btn btn-danger">Add to order</button></td>
+						    </tr>
+					    </tbody>
+					</table>
 				</form>
 			</div>
-
 		</ba-card>
 	</div>
 </div>
@@ -297,7 +296,6 @@
 <div *ngIf="chosenForm == 'Next Phase'" class="row">
 	<div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12">
 		<ba-card title="Form" baCardClass="with-scroll">
-			<h1>THIS STILL ISNT LINKED TO THE BACKEND</h1>
 			<h5>Update Project Phase</h5>
 			<p>Current Phase = {{project[0].currentPhase}}</p>
 			<form>

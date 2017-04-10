@@ -106,6 +106,15 @@ addOrder(selectedSupplier, selectedPhase, projectID)
   this.ordersService.addOrder(selectedSupplier, selectedPhase, projectID);
 }
 
+addProduct(productID, amount)
+{
+  console.log(productID);
+  
+  console.log(this.selectedOrder);
+  console.log(amount);
+    this.productsService.addProductOrder(productID, this.selectedOrder, amount);
+}
+
 readyToBuy(selectedOrder)
 {
   console.log(selectedOrder);

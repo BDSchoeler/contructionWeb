@@ -63,7 +63,7 @@ router.post('/',function(req,res,next){
 
             if(!err){
             Project.addProjectAccess(req.body,max,function(err,count){
-            Project.findMaxFinance(function(err,count){
+            Project.findMaxFinance(function(err,rows){
                 if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
                 phaseMax=rows[0].max+1;
                 }

@@ -21,11 +21,11 @@ export class Dashboard {
 		this.router.navigate(['/login']);
   	}
   	if(this.user.type==0){
-  		projectsService.getProjects().then(data => {
+  		this.projectsService.getProjects().then(data => {
   			this.projects=data;
   		});
   	}else{
-		projectsService.getProjectByEmail(this.user.email).then(data => {
+		this.projectsService.getProjectByEmail(this.user.email).then(data => {
   			this.projects=data;
   		});
   	}
@@ -35,7 +35,17 @@ export class Dashboard {
   addProject(location, type, size){
     console.log("adding project");
     
-    this.projectsService.addProject(location, type, size, this.user.email, this.user.type);
+    this.projectsService.addProject(location, type, size, this.user.email, this.user.type).then(data=>{
+          if(this.user.type==0){
+      this.projectsService.getProjects().then(data => {
+        this.projects=data;
+      });
+    }else{
+    this.projectsService.getProjectByEmail(this.user.email).then(data => {
+        this.projects=data;
+      });
+    }
+    });
   }
 
 }

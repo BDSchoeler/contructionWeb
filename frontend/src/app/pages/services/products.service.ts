@@ -20,6 +20,7 @@ export class ProductsService {
     {
       return this.http.get('http://localhost:8080/products/supplier/' + supplierID).toPromise().then(this.extractData).catch(this.handleError);
     }
+    
     addProductOrder(productID, orderID, amount){
               return this.http.post('http://localhost:8080/products/' , {'productID':productID, 'orderID':orderID, 'amount':amount}).toPromise()
                   .then(this.extractData)

@@ -123,7 +123,7 @@
 		  	<div class="form-group">
 		  		<input type="text" class="form-control" id="eTime" placeholder="Estimated Time To Complete" #estimatedTime>
 		  	</div>
-		 	<button (click)="addTask(selectedPhase.value, taskDescription.value, estimatedCost.value, estimatedTime.value)" type="submit" class="btn btn-danger">Submit</button>
+		 	<button (click)="addTask(selectedPhase.value, taskDescription.value, estimatedCost.value, estimatedTime.value, project[0].projectID)" type="submit" class="btn btn-danger">Submit</button>
 			</form>
 		</ba-card>
 	</div>

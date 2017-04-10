@@ -90,13 +90,13 @@ addPhase(name, description, projectID)
     this.phasesService.addPhase(name, description, projectID);
 }
 
-addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime)
+addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime, projectID)
 {
   console.log(phaseNumber);
   console.log(taskDescription);
   console.log(estimatedCost);
   console.log(estimatedTime);
-    this.tasksService.addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime);
+    this.tasksService.addTask(phaseNumber, taskDescription, estimatedCost, estimatedTime, projectID);
 }
 
 readyToBuy(selectedOrder)

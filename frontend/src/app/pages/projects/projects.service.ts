@@ -26,12 +26,12 @@ getProjectByEmail(email){
                   .then(this.extractData)
                   .catch(this.handleError);
 }
-addProject(project){
+/*addProject(project){
   return this.http.post('http://localhost:8080/projects/',project).toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
 
-}
+}*/
 
  updateStatus(status, id)
     {

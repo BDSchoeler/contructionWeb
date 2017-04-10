@@ -51,6 +51,7 @@ router.post('/',function(req,res,next){
 router.post('/login/',function(req,res,next){
 
   User.login(req.body,function(err,count){
+
     if(err)
     {
       res.json(err);

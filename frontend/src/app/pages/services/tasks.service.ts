@@ -15,15 +15,12 @@ export class TasksService {
                   .then(this.extractData)
                   .catch(this.handleError);
     }
-
     addTask(phaseNumber, taskDescription, estimatedTime, estimatedCost, projectID)
     {
       return this.http.post('http://localhost:8080/tasks/',{ 'projectID': projectID, 'phaseNumber' :phaseNumber,'taskDescription': taskDescription, 'estimatedTimeToComplete':estimatedTime, 'estimatedCost':estimatedCost} ).toPromise()
           .then(this.extractData)
           .catch(this.handleError);
     }
-
-
 
   private extractData(res: Response) {
     let body = res.json();

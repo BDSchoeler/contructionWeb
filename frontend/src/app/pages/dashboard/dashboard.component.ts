@@ -14,7 +14,9 @@ export class Dashboard {
   	this.user=localStorage.getItem('currentUser');
   	if(this.user){
   		this.user= JSON.parse(this.user)[0];
+      console.log("Below is the info youre look for!");
   		console.log(this.user);
+      console.log(this.user.email);
   	}else{
 		this.router.navigate(['/login']);
   	}
@@ -31,7 +33,7 @@ export class Dashboard {
 
 
   addProject(location, type, size){
-    this.projectsService.addProject(location, type, size);
+    this.projectsService.addProject(location, type, size, this.user.email, this.user.type);
   }
 
 }

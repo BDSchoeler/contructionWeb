@@ -43,7 +43,7 @@ getProjectByEmail(email){
         return this.http.put('http://localhost:8080/projects/phase/'+id, {'currentPhase':phase}).toPromise();
     }
 
-addProject(location, type, size)
+addProject(location, type, size, email, type)
 {
 
     return this.http.post('http://localhost:8080/projects/',{'projectType':type, 'Size':size, 'location':location}).toPromise()

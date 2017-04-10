@@ -16,7 +16,7 @@ export class TasksService {
                   .catch(this.handleError);
     }
 
-    addTask(phaseNumber, taskDescription)
+    addTask(phaseNumber, taskDescription, estimatedTime, estimatedCost)
     {
        //Add task backend
     }

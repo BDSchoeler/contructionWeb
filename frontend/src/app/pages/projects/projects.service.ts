@@ -40,13 +40,16 @@ addProject(project){
 
     updatePhase(phase, id)
     {
-       //something to update the currentPhase of an object
+        return this.http.put('http://localhost:8080/projects/phase/'+id, {'currentPhase':phase}).toPromise();
     }
 
 addProject(location, type, size)
 {
 
-  //Add implementation
+    return this.http.post('http://localhost:8080/projects/',{'projectType':type, 'Size':size, 'location':location}).toPromise()
+                  .then(this.extractData)
+                  .catch(this.handleError);
+
 }
 
 

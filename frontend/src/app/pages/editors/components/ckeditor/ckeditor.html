@@ -137,7 +137,7 @@
 			<div class="form-group">
   				<label for="exampleSelect1">Choose a supplier for this order.</label>
   				<select class="form-control" id="suppliers" #selectedSupplier>
-					<option *ngFor="let item of suppliers">{{item.supplierID}}:{{item.name}}</option>
+					<option *ngFor="let item of suppliers">{{item.supplierID}}</option>
   				</select>
 			</div>
 			<div class="form-group">
@@ -148,7 +148,7 @@
 			</div>
 			<div>
 				<form>
-		 			<button (click)="addOrder(selectSupplier.value, selectedPhase.value, project[0].projectID)" type="submit" class="btn btn-danger">Create Order</button>
+		 			<button (click)="addOrder(selectedSupplier.value, selectedPhase.value, project[0].projectID)" type="submit" class="btn btn-danger">Create Order</button>
 				</form>
 			</div>
 		</ba-card>
@@ -346,6 +346,7 @@
 					      <th></th>
 					      <th>Phase Number</th>
 					      <th>Title</th>
+					      <th>Descirption</th>
 					      <th>Estimated Duration</th>
 					      <th>Estimated Cost</th>
 					    </tr>
@@ -354,6 +355,7 @@
 					    <tr *ngFor="let item of phases">
 					      <td><button (click)="goToTasks(item.phaseNumber,id)" type="button" class="btn btn-info btn-icon"><i class="ion-information"></i></button></td>
 					      <td ngClass="nowrap"><a [routerLink]="'/pages/tasks/'+id+'/'+item.phaseNumber" routerLinkActive="active" target="_blank">{{ item.phaseNumber }}</a></td>
+					      <td class="align-right">{{ item.name }}</td>
 					      <td class="align-right">{{ item.description }}</td>
 					      <td class="align-right">{{ item.estimatedTimeToComplete }}</td>
 					      <td class="align-right">{{ item.estimatedCost }}</td>

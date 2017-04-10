@@ -66,6 +66,8 @@ router.post('/',function(req,res,next){
                         console.log(count);
             console.log(err);
         Product.updateOrderPrice(req.body.orderID,function(err,count){
+            Product.updateFinance(function(err,count){
+            
             console.log(count);
             console.log(err);
             if(err)
@@ -76,7 +78,7 @@ router.post('/',function(req,res,next){
                 res.json(req.body);//or return count for 1 & 0
             }
         });
-
+});
         });
 });
 router.post('/:id',function(req,res,next){

@@ -22,9 +22,9 @@ return db.query("UPDATE Phases ph SET ph.estimatedCost = (SELECT SUM(t.estimated
  },
 
 
-updateCostToCompleteProject:function(id,callback){
+updateCostToCompleteProject:function(callback){
  
-return db.query("UPDATE Finances f SET f.estimatedTotalCost = (SELECT SUM(p.estimatedCost) FROM Phases p WHERE f.projectID = p.projectID)",[id],callback);
+return db.query("UPDATE Finances f SET f.estimatedTotalCost = (SELECT SUM(p.estimatedCost) FROM Phases p WHERE f.projectID = p.projectID)",callback);
  }, 
 
 getTaskById:function(id,callback){

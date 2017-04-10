@@ -52,7 +52,7 @@ else{
 });
 router.post('/',function(req,res,next){
     var max=1;
-    Orders.findMax(function(err,rows){
+    Order.findMax(function(err,rows){
         if(typeof rows[0] !=='undefined' && typeof rows[0].max !=='undefined'){
         max=rows[0].max+1;
         }

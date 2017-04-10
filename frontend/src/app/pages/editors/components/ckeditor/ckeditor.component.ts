@@ -81,9 +81,9 @@ updateStatus(statusOption, projectID)
 
 updatePhase(phaseOption, projectID)
 {
-    /*this.projectsService.updatePhase(phaseOption, projectID).then(data=>{
+    this.projectsService.updatePhase(phaseOption, projectID).then(data=>{
       this.ngOnInit();
-    });*/
+    });
 }
 
 addPhase(name, description, projectID)

@@ -63,9 +63,11 @@ else{
 router.post('/',function(req,res,next){
 
         Product.addProduct(req.body,function(err,count){
+                        console.log(count);
+            console.log(err);
         Product.updateOrderPrice(req.body.orderID,function(err,count){
-
-            //console.log(req.body);
+            console.log(count);
+            console.log(err);
             if(err)
             {
                 res.json(err);

@@ -72,17 +72,24 @@ router.post('/',function(req,res,next){
         }
         console.log(max);
         Task.addTask(req.body,max,function(err,count){
-
+        if(!err){
+             Task.addTaskRelation(req.body,max,function(err,count){
+                console.log(err);
              if(!err){
              Task.updateTimeToCompleteTask(function(err,count){
+                                console.log(err);
             if(!err){
              Task.updateTimeToCompletePhase(function(err,count){
+                                console.log(err);
             if(!err){
              Task.updateTimeToCompleteProject(function(err,count){
+                         console.log(err);
             if(!err){
              Task.updateCostToCompletePhase(function(err,count){
+                   console.log(err);
             if(!err){
-             Task.updateCostToCompleteProject(function(err,count){
+             Task.updateCostToCompleteProject(function(err,count){                
+            console.log(err);
             if(err)
                     {
                         res.json(err);
@@ -98,7 +105,8 @@ router.post('/',function(req,res,next){
             }  
              });
             } 
-
+             });
+            } 
              });
             }
         });
